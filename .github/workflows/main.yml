@@ -20,8 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name cd to correct dir
-        run: cd ./DatenbankWeb
+      - name: cd to correct dir
+        run: cd DatenkankWeb
+          
       - name: Cache node modules
         uses: actions/cache@v1
         with:

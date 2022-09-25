@@ -95,7 +95,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.background = new THREE.Color(0xd4d4d8)
     this.loaderGLTF.load('assets/robot/test.gltf', (gltf: GLTF) => {
       this.model = gltf.scene.children[0];
-      console.log(this.model);
       var box = new THREE.Box3().setFromObject(this.model);
       box.getCenter(this.model.position); // this re-sets the mesh position
       this.model.position.multiplyScalar(-1);

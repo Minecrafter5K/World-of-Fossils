@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
 import { FossilDetailsComponent } from './details/fossil-details/fossil-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
-    FossilDetailsComponent
+    FossilDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

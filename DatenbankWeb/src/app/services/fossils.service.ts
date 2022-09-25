@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import PocketBase from 'pocketbase';
+import { Record } from "pocketbase";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FossilsService {
 
-  getFossilDetails (id: string): Observable<string> {
-    const returnValue = "test" + id;
-    return of(returnValue);
+  client!: PocketBase;
+
+  async getFossilDetails (id: string): Promise<Record | undefined> {
+    try {
+      const fossil = await this.client.records.getOne("fossils", id);
+      return fossil;
+    } catch (error) {
+      console.log("zes");
+      return undefined;
+    }
   }
 
-  constructor() { }
+  constructor() {
+    this.client = new PocketBase('http://127.0.0.1:8090');
+   }
 }

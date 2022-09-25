@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
 import { FossilsService } from 'src/app/services/fossils.service';
+
+import { Record } from "pocketbase";
+import { timer } from 'rxjs';
+import { Fossil } from 'src/app/stuff/fossil';
 
 @Component({
   selector: 'app-fossil-details',
@@ -9,19 +12,34 @@ import { FossilsService } from 'src/app/services/fossils.service';
   styleUrls: ['./fossil-details.component.scss']
 })
 export class FossilDetailsComponent implements OnInit {
-  fossil$!: Observable<string>;
+  fossil!: Fossil;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: FossilsService
   ) { }
 
   ngOnInit(): void {
-    this.fossil$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getFossilDetails(params.get('id')!))
-    );
-    console.log(this.fossil$);
-  }
+    this.route.paramMap.subscribe(async (params) => {
+      const id: string = params.get('id')!;
+      const fossil = await this.service.getFossilDetails(id);
 
+      try {
+        this.fossil = fossil as unknown as Fossil;
+      } catch (err) {
+        console.log("1");
+        if (err instanceof TypeError) {
+          console.log("2");
+          this.router.navigate(['404'], {skipLocationChange: true});
+        }
+      }
+
+      // if (typeof fossil == 'undefined') {
+      //   this.router.navigate(['404'], {skipLocationChange: true});
+      // } else {
+      //   this.fossil = fossil;
+      // }
+    });
+  }
 }

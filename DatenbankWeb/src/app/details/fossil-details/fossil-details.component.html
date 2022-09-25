@@ -1,4 +1,6 @@
 <p>fossil-details works!</p>
-<div *ngIf="fossil$ | async as fossil">
-    <p>{{fossil}}</p>
+<div>
+    <p>{{fossil.title}}</p>
+    <p>{{fossil.description}}</p>
+    <p>{{fossil.date_created | date: 'medium'}}</p>
 </div>

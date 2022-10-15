@@ -24,15 +24,12 @@ export class FossilDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(async (params) => {
       const id: string = params.get('id')!;
       const fossil = await this.service.getFossilDetails(id);
+      // const fossil = undefined;
 
-      try {
+      if (typeof fossil != 'undefined') {
         this.fossil = fossil as unknown as Fossil;
-      } catch (err) {
-        console.log("1");
-        if (err instanceof TypeError) {
-          console.log("2");
-          this.router.navigate(['404'], {skipLocationChange: true});
-        }
+      } else {
+        this.router.navigate(['404'], {skipLocationChange: true});
       }
 
       // if (typeof fossil == 'undefined') {

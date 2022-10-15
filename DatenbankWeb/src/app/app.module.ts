@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
 import { FossilDetailsComponent } from './details/fossil-details/fossil-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
     FossilDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

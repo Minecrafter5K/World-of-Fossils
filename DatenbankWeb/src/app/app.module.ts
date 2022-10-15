@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
-import { FossilDetailsComponent } from './details/fossil-details/fossil-details.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { FossilDetailsComponent } from './fossil/fossil-details/fossil-details.component';
+import { NotFoundComponent } from './util/not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-import { ExploreComponent } from './explore/explore.component';
-import { CreateComponent } from './create/create.component';
+import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
+import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
 import { FormsModule } from '@angular/forms';
+import { UploadImagesComponent } from './util/upload-images/upload-images.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { FormsModule } from '@angular/forms';
     FossilDetailsComponent,
     NotFoundComponent,
     HomeComponent,
-    ExploreComponent,
-    CreateComponent
+    ExploreFossilsComponent,
+    CreateFossilComponent,
+    UploadImagesComponent
   ],
   imports: [
     BrowserModule,

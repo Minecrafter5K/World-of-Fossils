@@ -1,3 +1,11 @@
+<form (ngSubmit)="onImageChange()" #img="ngForm" action="" >
+    <input type="file" name="img" onchange='
+        if(this.value != 0) {
+            this.form.submit();
+        }
+    '>
+</form>
+
 <form (ngSubmit)="onFormSubmit()" #f="ngForm">
     <input type="text" name="title" placeholder="title" ngModel>
     <input type="text" name="desc" placeholder="description" ngModel>

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FossilsService } from '../services/fossils.service';
-import { Fossil } from '../stuff/fossil';
+import { FossilsService } from '../../services/fossils.service';
+import { Fossil } from '../../models/fossil';
 
 @Component({
   selector: 'app-explore',
-  templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss']
+  templateUrl: './explore-fossils.component.html',
+  styleUrls: ['./explore-fossils.component.scss']
 })
-export class ExploreComponent implements OnInit {
+export class ExploreFossilsComponent implements OnInit {
   fossils!: Fossil[];
 
   constructor(

@@ -14,6 +14,8 @@ export class FossilsService {
   async getFossilDetails(id: string): Promise<Record | undefined> {
     try {
       const fossil = await this.client.records.getOne("fossils", id);
+      console.log(fossil);
+      
       return fossil;
     } catch (error) {
       console.log("error");

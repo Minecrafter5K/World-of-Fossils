@@ -1,0 +1,16 @@
+<form method="get">
+    <select name="sortby" onchange='if(this.value != 0) { this.form.submit(); }'>
+        <option value="nothing">pls select</option>
+        <option value="id">id</option>
+        <option value="created">date</option>
+    </select>
+    <input type="number" name="page">
+</form>
+
+<div *ngFor="let fossil of fossils" style="padding: 1rem; border: 2px solid;">
+    <a href="/fossil/{{fossil.id}}">
+        <h3>{{fossil.title}}</h3>
+        <p>{{fossil.description}}</p>
+        <p>{{fossil.date_created | date}}</p>
+    </a>
+</div>

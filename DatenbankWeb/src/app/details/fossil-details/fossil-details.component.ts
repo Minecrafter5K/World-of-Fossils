@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FossilsService } from 'src/app/services/fossils.service';
 
-import { Record } from "pocketbase";
-import { timer } from 'rxjs';
 import { Fossil } from 'src/app/stuff/fossil';
 
 @Component({
@@ -24,19 +22,12 @@ export class FossilDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(async (params) => {
       const id: string = params.get('id')!;
       const fossil = await this.service.getFossilDetails(id);
-      // const fossil = undefined;
 
       if (typeof fossil != 'undefined') {
         this.fossil = fossil as unknown as Fossil;
       } else {
         this.router.navigate(['404'], {skipLocationChange: true});
       }
-
-      // if (typeof fossil == 'undefined') {
-      //   this.router.navigate(['404'], {skipLocationChange: true});
-      // } else {
-      //   this.fossil = fossil;
-      // }
     });
   }
 }

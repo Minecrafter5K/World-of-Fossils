@@ -7,6 +7,7 @@ import { CubeComponent } from './cube/cube.component';
 import { FossilDetailsComponent } from './details/fossil-details/fossil-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './home/home.component';
     CubeComponent,
     FossilDetailsComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,

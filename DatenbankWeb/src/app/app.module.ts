@@ -8,6 +8,8 @@ import { FossilDetailsComponent } from './details/fossil-details/fossil-details.
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ExploreComponent } from './explore/explore.component';
+import { CreateComponent } from './create/create.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { ExploreComponent } from './explore/explore.component';
     FossilDetailsComponent,
     NotFoundComponent,
     HomeComponent,
-    ExploreComponent
+    ExploreComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

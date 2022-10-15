@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FossilsService } from '../services/fossils.service';
 import { Fossil } from '../stuff/fossil';
 
@@ -13,7 +13,6 @@ export class ExploreComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private FossilService: FossilsService
   ) { }
 

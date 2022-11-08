@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<form (ngSubmit)="onFormSubmit()" #loginForm="ngForm">
+    <input type="email" placeholder="E-Mail" name="email" ngModel>
+    <input type="password" placeholder="Password" name="password" ngModel>
+    <input type="submit" value="Lets go">
+</form>
+<p>or</p>
+<button (click)="logout()">Logout</button>

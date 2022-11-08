@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { Record } from "pocketbase";
-import { timeInterval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

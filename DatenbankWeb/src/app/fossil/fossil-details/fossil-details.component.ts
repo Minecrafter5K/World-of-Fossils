@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FossilsService } from 'src/app/services/fossils.service';
 
-import { Fossil } from 'src/app/stuff/fossil';
+import { Fossil } from 'src/app/models/fossil';
 
 @Component({
   selector: 'app-fossil-details',
@@ -11,6 +11,7 @@ import { Fossil } from 'src/app/stuff/fossil';
 })
 export class FossilDetailsComponent implements OnInit {
   fossil!: Fossil;
+  currentImg: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,5 +30,16 @@ export class FossilDetailsComponent implements OnInit {
         this.router.navigate(['404'], {skipLocationChange: true});
       }
     });
+  }
+
+  nextImg(): void {
+    if (this.currentImg < this.fossil.image.length - 1) {
+      this.currentImg ++;
+    }
+  }
+  beforeImg(): void {
+    if (this.currentImg > 0) {
+      this.currentImg --;
+    }    
   }
 }

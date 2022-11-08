@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+    font-size: 62.5%
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: Lato;
+}
+
+/* ------------------------------------------- */
+
+/* lato-regular - latin */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('assets/fonts/lato/Lato-Regular.ttf') format('truetype');
+}

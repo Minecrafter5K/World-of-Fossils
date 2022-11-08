@@ -24,7 +24,7 @@ export class ExploreFossilsComponent implements OnInit {
     this.route.queryParams.subscribe(async params => {
       const page: number | undefined = params['page'];
       const sort: string | undefined = params['sortby'];
-      const response = await this.FossilService.getFossils(page, 2, sort);
+      const response = await this.FossilService.getFossils(page, 15, sort);
       const fossils = response.items;
       this.fossils = fossils as unknown as Fossil[];      
     });

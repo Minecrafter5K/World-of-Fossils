@@ -11,6 +11,7 @@ import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossil
 import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
 import { FormsModule } from '@angular/forms';
 import { UploadImagesComponent } from './util/upload-images/upload-images.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UploadImagesComponent } from './util/upload-images/upload-images.compon
     HomeComponent,
     ExploreFossilsComponent,
     CreateFossilComponent,
-    UploadImagesComponent
+    UploadImagesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

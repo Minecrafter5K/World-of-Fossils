@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import PocketBase from 'pocketbase';
+import PocketBase, { BaseAuthStore } from 'pocketbase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  client!: PocketBase;
+  private client!: PocketBase;
 
+  constructor() {
+    this.client = new PocketBase('http://127.0.0.1:8090');
+  }
   async authUser(email: string, pass: string): Promise<void> {
     await this.client.users.authViaEmail(email, pass);
   }
@@ -16,7 +19,7 @@ export class AuthService {
     this.client.authStore.clear();
   }
 
-  constructor() {
-    this.client = new PocketBase('http://127.0.0.1:8090');
-   }
+  get getUser(): BaseAuthStore {
+    return this.client.authStore;
+  }  
 }

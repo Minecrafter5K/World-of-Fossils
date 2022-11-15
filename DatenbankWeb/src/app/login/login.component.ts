@@ -11,6 +11,8 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') myForm!: NgForm;
 
+  user?: string;
+
   constructor(
     private AuthService: AuthService,
     private router: Router,
@@ -24,10 +26,14 @@ export class LoginComponent implements OnInit {
 
     this.AuthService.authUser(vaules.email, vaules.password)
 
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
   }
   logout(): void {
     this.AuthService.logout();
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+  }
+  reload(): void {
+    this.user = this.AuthService.getUser.model?.email;
+    console.log(this.AuthService.getUser);
   }
 }

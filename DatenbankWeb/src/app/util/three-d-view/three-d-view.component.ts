@@ -1,17 +1,21 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
+import { Fossil } from 'src/app/models/fossil';
+
 
 @Component({
-  selector: 'app-cube',
-  templateUrl: './cube.component.html',
-  styleUrls: ['./cube.component.scss']
+  selector: 'app-three-d-view',
+  templateUrl: './three-d-view.component.html',
+  styleUrls: ['./three-d-view.component.scss']
 })
-export class CubeComponent implements OnInit, AfterViewInit {
+export class ThreeDViewComponent implements OnInit {
 
-  @ViewChild('canvas') private canvasRef!: ElementRef;
+  @ViewChild('three-d-canvas') private canvasRef!: ElementRef;
+
+  @Input() fossil?: Fossil;
 
   //* Stage Properties
 
@@ -147,7 +151,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true });
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-    let component: CubeComponent = this;
+    let component: ThreeDViewComponent = this;
       if (typeof component.renderer != 'undefined') {
         (function render() {
           component.renderer.render(component.scene, component.camera);

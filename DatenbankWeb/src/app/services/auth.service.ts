@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import PocketBase, { BaseAuthStore } from 'pocketbase';
+import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,9 @@ export class AuthService {
 
   private client!: PocketBase;
 
-  constructor() {
-    this.client = new PocketBase('http://127.0.0.1:8090');
-  }
+  constructor(private pocketBaseService: PocketBaseService) {
+    this.client = pocketBaseService.client;
+   }
   async authUser(email: string, pass: string): Promise<void> {
     await this.client.users.authViaEmail(email, pass);
   }

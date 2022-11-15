@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { Record } from "pocketbase";
+import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FossilsService {
 
-  client!: PocketBase;
+  client: PocketBase;
+
+  constructor(private pocketBaseService: PocketBaseService) {
+    this.client = pocketBaseService.client;
+   }
 
   // get details from one fossil
   async getFossilDetails(id: string): Promise<Record | undefined> {
@@ -44,8 +49,4 @@ export class FossilsService {
     })
     return id;
   }
-
-  constructor() {
-    this.client = new PocketBase('http://127.0.0.1:8090');
-   }
 }

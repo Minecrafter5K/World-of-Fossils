@@ -4,15 +4,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
+import { FossilDetailsComponent } from './fossil/fossil-details/fossil-details.component';
+import { NotFoundComponent } from './util/not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
+import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
+import { FormsModule } from '@angular/forms';
+import { UploadImagesComponent } from './util/upload-images/upload-images.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CubeComponent
+    CubeComponent,
+    FossilDetailsComponent,
+    NotFoundComponent,
+    HomeComponent,
+    ExploreFossilsComponent,
+    CreateFossilComponent,
+    UploadImagesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

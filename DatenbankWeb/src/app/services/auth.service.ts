@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import PocketBase, { BaseAuthStore } from 'pocketbase';
-import { environment } from 'src/environments/environment';
 import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({

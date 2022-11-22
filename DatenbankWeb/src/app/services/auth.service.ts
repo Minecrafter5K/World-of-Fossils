@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PocketBase, { BaseAuthStore } from 'pocketbase';
+import PocketBase, { BaseAuthStore, User } from 'pocketbase';
 import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
@@ -20,7 +20,11 @@ export class AuthService {
     this.client.authStore.clear();
   }
 
-  get getUser(): BaseAuthStore {
+  get getCurrentUser(): BaseAuthStore {
     return this.client.authStore;
-  }  
+  }
+
+  getUser(id: string): Promise<User> {
+    return this.client.users.getOne(id);
+  }
 }

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     // this.router.navigate(['/']);
   }
   reload(): void {
-    this.user = this.AuthService.getUser.model?.email;
-    console.log(this.AuthService.getUser);
+    this.user = this.AuthService.getCurrentUser.model?.email;
+    console.log(this.AuthService.getCurrentUser);
   }
 }

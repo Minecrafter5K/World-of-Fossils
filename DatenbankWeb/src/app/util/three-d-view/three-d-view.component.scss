@@ -1,0 +1,13 @@
+.container {
+    height: 75vmin;
+    width: 75vmin;
+    position: relative;
+}
+
+#canvas, #renderer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

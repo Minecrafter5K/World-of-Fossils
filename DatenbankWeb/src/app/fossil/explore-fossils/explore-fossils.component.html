@@ -8,7 +8,6 @@
 </form>
 
 <div *ngFor="let fossil of fossils" style="padding: 1rem; border: 2px solid;">
-    <app-three-d-view [fossil]="fossil" style="height: 10vmin; width: 10vmin;"></app-three-d-view>
     <a href="/fossil/{{fossil.id}}">
         <h3>{{fossil.title}}</h3>
         <p>{{fossil.description}}</p>

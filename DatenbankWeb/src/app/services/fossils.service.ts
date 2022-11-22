@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { Record } from "pocketbase";
+import { AuthService } from './auth.service';
 import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
@@ -10,20 +11,21 @@ export class FossilsService {
 
   client: PocketBase;
 
-  constructor(private pocketBaseService: PocketBaseService) {
+  constructor(
+    private pocketBaseService: PocketBaseService,
+    private authService: AuthService,
+    ) {
     this.client = pocketBaseService.client;
    }
 
   // get details from one fossil
-  async getFossilDetails(id: string): Promise<Record | undefined> {
+  async getFossilDetails(id: string): Promise<Record> {
     try {
-      const fossil = await this.client.records.getOne("fossils", id);
-      console.log(fossil);
-      
+      const fossil: Record = await this.client.records.getOne("fossils", id);
       return fossil;
     } catch (error) {
       console.log("error");
-      return undefined;
+      return new Record();
     }
   }
 
@@ -45,7 +47,7 @@ export class FossilsService {
     const { id } = await this.client.records.create('fossils', {
       title: title,
       description: desc,
-      owner: "tl1ko1ue1zdhfd3"
+      owner: this.authService.getCurrentUser
     })
     return id;
   }

@@ -1,7 +1,9 @@
 <div>
     <p>{{fossil.title}}</p>
     <p>{{fossil.description}}</p>
-    <img src="http://127.0.0.1:8090/api/files/fossils/{{fossil.id}}/{{fossil.image[currentImg]}}" alt="image [currentImg]">
+    <p style="font-style: italic;">{{fossilOwner?.email}}</p>
+    <img src="{{imgUrl}}" alt="image">
     <button (click)="beforeImg()"><</button>
     <button (click)="nextImg()">></button>
+    <app-three-d-view [fossil]="fossil"></app-three-d-view>
 </div>

@@ -1,7 +1,57 @@
 <h1>Signin</h1>
-<form (ngSubmit)="onFormSubmit()" #loginForm="ngForm" method="dialog">
-    <input type="email" placeholder="E-Mail" name="email" ngModel>
-    <input type="password" placeholder="Password" name="password" ngModel>
-    <input type="password" placeholder="Repeat Password" name="passwordConfirm" ngModel>
-    <input type="submit" value="Signin">
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <label for="email">Email</label>
+    <input
+      name="email"
+      class="form-control"
+      type="text"
+      required
+      email
+      [(ngModel)]="credentials.email"
+      #emailInput="ngModel"
+    />
+    <div
+      class="text-danger"
+      *ngIf="emailInput.invalid && emailInput.dirty">
+      <small *ngIf="emailInput.hasError('required')">Email is required!</small>
+      <small *ngIf="emailInput.hasError('email')">Email is invalid!</small>
+    </div>
+
+    <label for="password1">Password</label>
+      <input
+        name="password1"
+        class="form-control"
+        type="password"
+        required
+        minlength="8"
+        maxlength="100"
+        [(ngModel)]="credentials.password1"
+        #passwordInput1="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="passwordInput1.invalid && passwordInput1.dirty">
+        <small *ngIf="passwordInput1.hasError('required')">Password is required!</small>
+        <small *ngIf="passwordInput1.hasError('minlength')"> Password should be 8 to 100 charakters!</small>
+      </div>
+
+    <label for="password2">Repeat Passwort</label>
+      <input
+        name="password2"
+        class="form-control"
+        type="password"
+        required
+        minlength="8"
+        maxlength="100"
+        [(ngModel)]="credentials.password2"
+        #passwordInput2="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="passwordInput2.invalid && passwordInput2.dirty">
+        <small *ngIf="passwordInput2.hasError('required')">Password is required!</small>
+        <small *ngIf="passwordInput2.hasError('minlength')"> Password should be 8 to 100 charakters!</small>
+      </div>
+
+  <button [disabled]="loginForm.invalid" type="submit">Signin</button>
 </form>

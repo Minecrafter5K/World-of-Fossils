@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import PocketBase, { BaseAuthStore, User } from 'pocketbase';
+import { LoginCredentials } from '../models/LoginCredentials';
+import { SinginCredentials } from '../models/SinginCredentials';
 import { PocketBaseService } from './pocket-base.service';
 
 @Injectable({
@@ -12,17 +14,17 @@ export class AuthService {
   constructor(private pocketBaseService: PocketBaseService) {
     this.client = pocketBaseService.client;
    }
-  async authUser(email: string, pass: string): Promise<void> {
-    await this.client.users.authViaEmail(email, pass);
+  async authUser(credentials: LoginCredentials): Promise<void> {
+    await this.client.users.authViaEmail(credentials.email, credentials.password);
   }
 
-  async createUser(email: string, password: string, passwordConfirm: string): Promise<string> {
-    const user = await this.client.users.create({
-      email: email,
-      password: password,
-      passwordConfirm: passwordConfirm,
+  createUser(credentials: SinginCredentials): Promise<User> {
+    const user = this.client.users.create({
+      email: credentials.email,
+      password: credentials.password1,
+      passwordConfirm: credentials.password2,
     });
-    return user.id;
+    return user;
   }
 
   logout(): void {

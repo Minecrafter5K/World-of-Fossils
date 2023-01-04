@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'pocketbase';
+import { SinginCredentials } from 'src/app/models/SinginCredentials';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,9 +11,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./singin.component.scss']
 })
 export class SinginComponent implements OnInit {
-  @ViewChild('loginForm') myForm!: NgForm;
-
-  userid?: Promise<string>;
+  credentials: SinginCredentials = {
+    email: '',
+    password1: '',
+    password2: ''
+  }
+  user?: Promise<User>;
 
   constructor(
     private AuthService: AuthService,
@@ -21,16 +26,16 @@ export class SinginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onFormSubmit(): Promise<void> {
-    const vaules = this.myForm.value;
-
-    if (  vaules.email != '' &&
-      vaules.password != '' &&
-      vaules.username != '' &&
-      vaules.password == vaules.passwordConfirm  ) {
-        this.userid = this.AuthService.createUser(vaules.email, vaules.password, vaules.passwordConfirm);
-    }
+  async onSubmit(): Promise<void> {
+    this.user = this.AuthService.createUser(this.credentials);
     
-    this.userid?.then((userid) => this.router.navigate(['/', userid]))
+    this.user?.then(() => /* this.router.navigate(['/']) */ console.log("signed in"));
+  }
+
+  getErrPayload(err: ValidationErrors | null, errType: string) {
+    if (err && err[errType]) {
+      return err[errType];
+    }
+    return {};
   }
 }

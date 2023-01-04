@@ -1,9 +1,41 @@
 <h1>Login</h1>
-<form (ngSubmit)="onFormSubmit()" #loginForm="ngForm">
-    <input type="email" placeholder="E-Mail" name="email" ngModel>
-    <input type="password" placeholder="Password" name="password" ngModel>
-    <input type="submit" value="Lets go">
+
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <label for="email">Email</label>
+    <input
+      name="email"
+      class="form-control"
+      type="text"
+      required
+      email
+      [(ngModel)]="credentials.email"
+      #emailInput="ngModel"
+    />
+    <div
+      class="text-danger"
+      *ngIf="emailInput.invalid && emailInput.dirty">
+      <small *ngIf="emailInput.hasError('required')">Email is required!</small>
+      <small *ngIf="emailInput.hasError('email')">Email is invalid!</small>
+    </div>
+
+    <label for="password1">Password</label>
+      <input
+        name="password1"
+        class="form-control"
+        type="password"
+        required
+        [(ngModel)]="credentials.password"
+        #passwordInput1="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="passwordInput1.invalid && passwordInput1.dirty">
+        <small *ngIf="passwordInput1.hasError('required')">Password is required!</small>
+      </div>
+
+  <button [disabled]="loginForm.invalid" type="submit">Login</button>
 </form>
+
 <p>or <a routerLink="/signin">signin</a></p>
 <p>or</p>
 <button (click)="logout()">Logout</button>

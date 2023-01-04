@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginCredentials } from 'src/app/models/LoginCredentials';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginForm') myForm!: NgForm;
-
+  credentials: LoginCredentials = {
+    email: '',
+    password: ''
+  }
   user?: string;
 
   constructor(
@@ -19,15 +22,22 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.reload();
   }
 
-  async onFormSubmit(): Promise<void> {
-    const vaules = this.myForm.value;
-
-    this.AuthService.authUser(vaules.email, vaules.password)
-
+  async onSubmit(): Promise<void> {
+    this.AuthService.authUser(this.credentials);
+    
     // this.router.navigate(['/']);
   }
+
+  getErrPayload(err: ValidationErrors | null, errType: string) {
+    if (err && err[errType]) {
+      return err[errType];
+    }
+    return {};
+  }
+
   logout(): void {
     this.AuthService.logout();
     // this.router.navigate(['/']);

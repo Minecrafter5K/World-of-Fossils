@@ -16,6 +16,15 @@ export class AuthService {
     await this.client.users.authViaEmail(email, pass);
   }
 
+  async createUser(email: string, password: string, passwordConfirm: string): Promise<string> {
+    const user = await this.client.users.create({
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm,
+    });
+    return user.id;
+  }
+
   logout(): void {
     this.client.authStore.clear();
   }

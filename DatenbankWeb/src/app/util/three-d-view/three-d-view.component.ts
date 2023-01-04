@@ -170,7 +170,6 @@ export class ThreeDViewComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log("SIS");
     this.modelUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil?.id + "/" + this.fossil?.model;
     console.log(this.modelUrl);
 

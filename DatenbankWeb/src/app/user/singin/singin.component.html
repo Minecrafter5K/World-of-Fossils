@@ -1,0 +1,7 @@
+<h1>Signin</h1>
+<form (ngSubmit)="onFormSubmit()" #loginForm="ngForm" method="dialog">
+    <input type="email" placeholder="E-Mail" name="email" ngModel>
+    <input type="password" placeholder="Password" name="password" ngModel>
+    <input type="password" placeholder="Repeat Password" name="passwordConfirm" ngModel>
+    <input type="submit" value="Signin">
+</form>

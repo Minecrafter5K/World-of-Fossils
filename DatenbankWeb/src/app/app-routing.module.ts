@@ -5,7 +5,8 @@ import { FossilDetailsComponent } from './fossil/fossil-details/fossil-details.c
 import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './util/not-found/not-found.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './user/login/login.component';
+import { SinginComponent } from './user/singin/singin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'fossil/:id', component: FossilDetailsComponent },
   { path: 'new', component: CreateFossilComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'signin', component: SinginComponent },
 ];
 
 @NgModule({

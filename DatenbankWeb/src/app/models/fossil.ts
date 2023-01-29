@@ -3,6 +3,6 @@ export interface Fossil {
     title: string;
     description: string;
     owner_id: string;
-    images: string[];
+    image: string[];
     model: string;
 }

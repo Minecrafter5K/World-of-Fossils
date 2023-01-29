@@ -33,12 +33,12 @@ export class FossilDetailsComponent implements OnInit {
 
         if (typeof fossil != 'undefined') {
           this.fossil = fossil as unknown as Fossil;
+          this.imgUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil.id + "/" + this.fossil.image[this.currentImg];
         } else {
           this.router.navigate(['404'], {skipLocationChange: true});
         }
       });
       // this.initialize();
-      this.imgUrl = environment.pocketbase_url + "/api/files/fossils/" + this.fossil.id + "/" + this.fossil.images[this.currentImg];
     }
     
   //   async initialize(): Promise<void> {
@@ -50,13 +50,19 @@ export class FossilDetailsComponent implements OnInit {
   // }
 
   nextImg(): void {
-    if (this.currentImg < this.fossil.images.length - 1) {
+    if (this.currentImg < this.fossil.image.length - 1) {
       this.currentImg ++;
+      this.imgUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil.id + "/" + this.fossil.image[this.currentImg];
     }
+    // console.log(this.imgUrl);
+    // console.log(this.fossil);
+    // console.log(this.fossil.image);
+    // console.log(this.fossil.image.length);
   }
   beforeImg(): void {
     if (this.currentImg > 0) {
       this.currentImg --;
+      this.imgUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil.id + "/" + this.fossil.image[this.currentImg];
     }    
   }
 }

@@ -119,10 +119,10 @@ export class ThreeDViewComponent implements OnInit {
     this.camera.position.x = 100;
     this.camera.position.y = 100;
     this.camera.position.z = 100;
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
     this.scene.add(this.ambientLight);
     this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    this.directionalLight.position.set(0, 1, 0.5);
+    this.directionalLight.position.set(0.5, 1, 0.5);
     this.directionalLight.castShadow = true;
     this.scene.add(this.directionalLight);
     // this.light1 = new THREE.PointLight(0x4b371c, 1);

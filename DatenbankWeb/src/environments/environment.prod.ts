@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  pocketbase_url: "https://test.miniwar.de/api/",
+  pocketbase_url: "https://api.theworldoffossils.de/pb/",
 };

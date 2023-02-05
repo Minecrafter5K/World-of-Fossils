@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FossilsService } from '../../services/fossils.service';
 import { Fossil } from '../../models/fossil';
 
@@ -11,6 +11,9 @@ import { Fossil } from '../../models/fossil';
 export class ExploreFossilsComponent implements OnInit {
   fossils!: Fossil[];
 
+  currentPage: number = 1;
+  currentSort: string = "id";
+
   constructor(
     private route: ActivatedRoute,
     private FossilService: FossilsService
@@ -21,10 +24,12 @@ export class ExploreFossilsComponent implements OnInit {
   }
 
   getFossils(): void {
-    this.route.queryParams.subscribe(async params => {
-      const page: number | undefined = params['page'];
-      const sort: string | undefined = params['sortby'];
-      const response = await this.FossilService.getFossils(page, 15, sort);
+
+
+    this.route.paramMap.subscribe(async (params) => {
+      this.currentPage = parseInt(params.get('page')!);
+      this.currentSort = params.get('sortby')!;
+      const response = await this.FossilService.getFossils(this.currentPage, 15, this.currentSort);
       const fossils = response.items;
       this.fossils = fossils as unknown as Fossil[];      
     });

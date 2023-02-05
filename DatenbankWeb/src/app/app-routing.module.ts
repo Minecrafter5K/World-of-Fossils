@@ -12,7 +12,7 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: '404', component: NotFoundComponent },
-  { path: 'explore', component: ExploreFossilsComponent },
+  { path: 'explore/:page/:sortby', component: ExploreFossilsComponent },
   { path: 'fossil/:id', component: FossilDetailsComponent },
   { path: 'new', component: CreateFossilComponent },
   { path: 'login', component: LoginComponent },

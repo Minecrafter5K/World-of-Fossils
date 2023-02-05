@@ -4,8 +4,9 @@
         <option value="id">id</option>
         <option value="created">date</option>
     </select>
-    <input type="number" name="page">
 </form>
+<a class="next" routerLink="/explore/{{currentPage + 1}}/{{currentSort}}">Next Page</a>
+<a class="previous" routerLink="/explore/{{currentPage - 1}}/{{currentSort}}">Previous Page</a>
 
 <div *ngFor="let fossil of fossils" style="padding: 1rem; border: 2px solid;">
     <a href="/fossil/{{fossil.id}}">

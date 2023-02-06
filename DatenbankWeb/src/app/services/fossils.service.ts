@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { Record } from "pocketbase";
+import { environment } from 'src/environments/environment';
+import { Fossil } from '../models/fossil';
 import { AuthService } from './auth.service';
 import { PocketBaseService } from './pocket-base.service';
 
@@ -30,15 +32,19 @@ export class FossilsService {
   }
 
   // get list of fossils
-  async getFossils(page?: number, itemPerPage?: number, sort?: string): Promise<any> {
+  async getFossils(page?: number, itemPerPage?: number, sort?: string): Promise<Fossil[]> {
     try {
-      const fossils = await this.client.records.getList('fossils', page, itemPerPage, {
-        sort: sort
-      })
-      return fossils;
+      const response = await this.client.records.getList('fossils', page, itemPerPage, { sort: sort });
+
+      const fossils = response.items.map(fossil => {
+        fossil['imageURL'] = this.getImgURLs(fossil.id, fossil['image'], "?thumb=120x120");
+        return fossil;
+      });
+
+      return fossils as unknown as Fossil[];
     } catch (error) {
-      console.log("error");
-      return undefined;
+      console.log("error in getFossils");
+      return [];
     }
   }
 
@@ -50,5 +56,11 @@ export class FossilsService {
       owner: this.authService.getCurrentUser
     })
     return id;
+  }
+
+  getImgURLs(fossilID: string, imgNames: string[], thumb: string): string[] {
+    return imgNames.map(imgName => {
+      return environment.pocketbase_url + "api/files/fossils/" + fossilID + "/" + imgName + thumb;
+    });
   }
 }

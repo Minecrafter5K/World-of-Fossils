@@ -4,5 +4,6 @@ export interface Fossil {
     description: string;
     owner_id: string;
     image: string[];
+    imageURL: string[];
     model: string;
 }

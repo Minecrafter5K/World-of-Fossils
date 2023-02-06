@@ -8,9 +8,12 @@
 <a class="next" routerLink="/explore/{{currentPage + 1}}/{{currentSort}}">Next Page</a>
 <a class="previous" routerLink="/explore/{{currentPage - 1}}/{{currentSort}}">Previous Page</a>
 
-<div *ngFor="let fossil of fossils" style="padding: 1rem; border: 2px solid;">
-    <a href="/fossil/{{fossil.id}}">
-        <h3>{{fossil.title}}</h3>
-        <p>{{fossil.description}}</p>
+<div *ngFor="let fossil of fossils" class="list">
+    <a href="/fossil/{{fossil.id}}" class="main-a">
+        <img src="{{fossil.imageURL[0]}}" alt="img from fossil" class="img-title">
+        <div class="infos">
+            <h3 class="title">{{fossil.title}}</h3>
+            <p class="desc">{{fossil.description}}</p>
+        </div>
     </a>
 </div>

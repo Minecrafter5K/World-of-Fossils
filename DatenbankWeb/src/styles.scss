@@ -1,8 +1,10 @@
-$color-primary: #6ba9ff;
+// $color-primary: #6ba9ff;
+$color-primary: #8757df;
 $color-primary-88: rgba($color-primary, 0.88);
 $color-primary-50: rgba($color-primary, 0.50);
 
-$color-secondary: #f2a649;
+// $color-secondary: #f2a649;
+$color-secondary: #6ba9ff;
 $color-secondary-88: rgba($color-secondary, 0.88);
 $color-secondary-50: rgba($color-secondary, 0.50);
 
@@ -14,6 +16,11 @@ body {
     font-size: 1.6rem;
     font-family: Lato;
     background-color: rgb(28, 28, 30);
+    margin: 0;
+}
+
+p {
+    color: white;
 }
 
 /* ------------------------------------------- */

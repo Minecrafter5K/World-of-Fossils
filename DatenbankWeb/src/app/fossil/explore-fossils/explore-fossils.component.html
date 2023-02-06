@@ -1,19 +1,35 @@
-<form method="get">
-    <select name="sortby" onchange='if(this.value != 0) { this.form.submit(); }'>
-        <option value="nothing">pls select</option>
-        <option value="id">id</option>
-        <option value="created">date</option>
-    </select>
-</form>
-<a class="next" routerLink="/explore/{{currentPage + 1}}/{{currentSort}}">Next Page</a>
-<a class="previous" routerLink="/explore/{{currentPage - 1}}/{{currentSort}}">Previous Page</a>
-
-<div *ngFor="let fossil of fossils" class="list">
-    <a href="/fossil/{{fossil.id}}" class="main-a">
-        <img src="{{fossil.imageURL[0]}}" alt="img from fossil" class="img-title">
-        <div class="infos">
-            <h3 class="title">{{fossil.title}}</h3>
-            <p class="desc">{{fossil.description}}</p>
+<div class="view">
+    <div class="top">
+        <div class="controls">
+            <p>Filter: </p>
+            <form method="get">
+                <select name="sortby" onchange='if(this.value != 0) { this.form.submit(); }'>
+                    <option value="nothing">pls select</option>
+                    <option value="id">id</option>
+                    <option value="created">date</option>
+                </select>
+            </form>
         </div>
-    </a>
+        
+        <div *ngFor="let fossil of fossils" class="list">
+            <a href="/fossil/{{fossil.id}}" class="main-a">
+                <div class="left">
+                    <img src="{{fossil.imageURL[0]}}" alt="img from fossil" class="img-title">
+                    <div class="details">
+                        <h3 class="title">{{fossil.title}}</h3>
+                        <p class="desc">{{fossil.description}}</p>
+                    </div>
+                </div>
+                <div class="infos">
+                    <p>Owner: [fossil.Owner]</p>
+                    <p>Age: {{fossil.age}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="site-controls">
+        <a class="previous" routerLink="/explore/{{currentPage - 1}}/{{currentSort}}">Previous Page</a>
+        <a class="next" routerLink="/explore/{{currentPage + 1}}/{{currentSort}}">Next Page</a>
+    </div>
 </div>

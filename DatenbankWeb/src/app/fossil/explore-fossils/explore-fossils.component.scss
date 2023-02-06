@@ -1,5 +1,23 @@
 @use "../../../styles";
 
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.view {
+    display: flex;
+    flex-direction: column;
+    max-width: 175vmin;
+    min-width: 100vmin;
+}
+
+@media (max-width: 1200px) {
+    .view {
+        width: 100%;
+    }
+}
+
 .list {
     margin: 1rem;
     border: 1px solid;
@@ -16,6 +34,11 @@
 
 .main-a {
     display: flex;
+    justify-content: space-between;
+}
+
+.main-a .left {
+    display: flex;
 }
 
 .img-title {
@@ -25,10 +48,55 @@
     border-bottom-left-radius: 0.75rem;
 }
 
-.infos {
+.details {
     margin-left: 2.5rem;
+}
+
+.infos {
+    margin: 1rem;
+}
+
+@media (max-width: 750px) {
+    .infos {
+        display: none;
+    }
+}
+
+.infos * {
+    color: gray;
+    margin: 0.5rem;
 }
 
 .title {
     margin-top: 0.75rem;
+}
+
+.controls {
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: rgb(50, 50, 50);
+    box-shadow: rgba(0, 0, 0, 0.4) 2px 1px 9px 1px;
+}
+
+.controls * {
+    margin: auto;
+    display: inline;
+    margin: 1rem;
+}
+
+.site-controls {
+    align-self: flex-end;
+    margin-top: 3rem;
+}
+
+.site-controls * {
+    text-decoration: none;
+    color: white;
+    margin: 1rem;
+    background-color: rgb(65, 65, 65);
+    padding: 0.75rem;
+    border: 1px solid;
+    border-color: rgb(200, 200, 200);
+    border-color: styles.$color-secondary;
+    border-radius: 1rem;
 }

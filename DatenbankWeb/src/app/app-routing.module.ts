@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: '404', component: NotFoundComponent },
   { path: 'explore/:page/:sortby', component: ExploreFossilsComponent },
+  { path: 'explore', redirectTo: 'explore/1/id', pathMatch: 'full' },
   { path: 'fossil/:id', component: FossilDetailsComponent },
   { path: 'new', component: CreateFossilComponent },
   { path: 'login', component: LoginComponent },

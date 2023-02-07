@@ -1,0 +1,27 @@
+@use "../styles";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: styles.$color-secondary-dark;
+    margin: 0;
+}
+
+header .left h2 {
+    margin: 0;
+    padding: 2rem;
+    cursor: pointer;
+    color: styles.$color-primary;
+
+}
+
+header .right {
+    display: flex;
+    align-items: center;
+}
+
+header .right a {
+    margin: 1rem;
+    color: white;
+    text-decoration: none;
+}

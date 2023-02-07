@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  // TODO: is on, when header should be displayed e.g. not in the HomeComponent
+  header: boolean = true;
+
   title = 'World of Fossils';
 }

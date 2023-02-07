@@ -1,12 +1,11 @@
-// $color-primary: #6ba9ff;
 $color-primary: #8757df;
 $color-primary-88: rgba($color-primary, 0.88);
 $color-primary-50: rgba($color-primary, 0.50);
 
-// $color-secondary: #f2a649;
 $color-secondary: #6ba9ff;
 $color-secondary-88: rgba($color-secondary, 0.88);
 $color-secondary-50: rgba($color-secondary, 0.50);
+$color-secondary-dark: darken($color-secondary, 55%);
 
 html {
     font-size: 62.5%

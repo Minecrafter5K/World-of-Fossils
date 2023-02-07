@@ -54,13 +54,9 @@ export class FossilDetailsComponent implements OnInit {
       this.currentImg ++;
       this.imgUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil.id + "/" + this.fossil.image[this.currentImg];
     }
-    // console.log(this.imgUrl);
-    // console.log(this.fossil);
-    // console.log(this.fossil.image);
-    // console.log(this.fossil.image.length);
   }
   beforeImg(): void {
-    if (this.currentImg > 0) {
+    if (this.currentImg >= 0) {
       this.currentImg --;
       this.imgUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil.id + "/" + this.fossil.image[this.currentImg];
     }    

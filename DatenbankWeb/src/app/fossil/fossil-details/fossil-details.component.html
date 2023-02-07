@@ -1,9 +1,15 @@
-<div>
-    <p>{{fossil.title}}</p>
-    <p>{{fossil.description}}</p>
+<div class="view">
+    <h1>{{fossil.title}}</h1>
+    <p>{{fossil.age}} Years old</p>
     <p style="font-style: italic;">{{fossilOwner?.email}}</p>
-    <img src="{{imgUrl}}" alt="image">
-    <button (click)="beforeImg()"><</button>
-    <button (click)="nextImg()">></button>
-    <app-three-d-view [fossil]="fossil"></app-three-d-view>
+    <div class="gallery">
+        <button (click)="beforeImg()"><-</button>
+        <div class="model" *ngIf="currentImg < 0">
+            <app-three-d-view [fossil]="fossil"></app-three-d-view>
+        </div>
+        <img src="{{imgUrl}}" alt="image" class="image" *ngIf="currentImg >= 0">
+        <button (click)="nextImg()">-></button>
+    </div>
+    <p class="img-counter">{{currentImg + 2}} from {{fossil.image.length + 1}}</p>
+    <p>{{fossil.description}}</p>
 </div>

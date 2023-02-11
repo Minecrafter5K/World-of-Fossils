@@ -1,7 +1,7 @@
-<div class="view">
+<div class="view" *ngIf="fossil">
     <h1>{{fossil.title}}</h1>
     <p>{{fossil.age}} Years old</p>
-    <p style="font-style: italic;">{{fossilOwner?.email}}</p>
+    <!-- <p style="font-style: italic;">{{fossilOwner?.email}}</p> -->
     <div class="gallery">
         <button (click)="beforeImg()"><-</button>
         <div class="model" *ngIf="currentImg < 0">

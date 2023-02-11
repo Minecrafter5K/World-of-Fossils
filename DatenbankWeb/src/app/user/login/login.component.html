@@ -1,21 +1,20 @@
 <h1>Login</h1>
 
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-  <label for="email">Email</label>
+  <label for="email">Email or Username</label>
     <input
       name="email"
       class="form-control"
       type="text"
       required
-      email
+      text
       [(ngModel)]="credentials.email"
-      #emailInput="ngModel"
+      #emailOrUserInput="ngModel"
     />
     <div
       class="text-danger"
-      *ngIf="emailInput.invalid && emailInput.dirty">
-      <small *ngIf="emailInput.hasError('required')">Email is required!</small>
-      <small *ngIf="emailInput.hasError('email')">Email is invalid!</small>
+      *ngIf="emailOrUserInput.invalid && emailOrUserInput.dirty">
+      <small *ngIf="emailOrUserInput.hasError('required')">Email or Username is required!</small>
     </div>
 
     <label for="password1">Password</label>

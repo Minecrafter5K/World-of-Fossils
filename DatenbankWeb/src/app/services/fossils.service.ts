@@ -23,7 +23,7 @@ export class FossilsService {
   // get details from one fossil
   async getFossilDetails(id: string): Promise<Record> {
     try {
-      const fossil: Record = await this.client.records.getOne("fossils", id);
+      const fossil: Record = await this.client.collection('fossils').getOne(id);
       return fossil;
     } catch (error) {
       console.log("error");
@@ -34,7 +34,9 @@ export class FossilsService {
   // get list of fossils
   async getFossils(page?: number, itemPerPage?: number, sort?: string): Promise<Fossil[]> {
     try {
-      const response = await this.client.records.getList('fossils', page, itemPerPage, { sort: sort });
+      const response = await this.client.collection('fossils').getList(page, itemPerPage, { sort: sort });
+
+      console.log(response);
 
       const fossils = response.items.map(fossil => {
         fossil['imageURL'] = this.getImgURLs(fossil.id, fossil['image'], "?thumb=120x120");
@@ -50,7 +52,7 @@ export class FossilsService {
 
   // create new fossil
   async addFossil(title: string, desc: string): Promise<string> {
-    const { id } = await this.client.records.create('fossils', {
+    const { id } = await this.client.collection('fossils').create({
       title: title,
       description: desc,
       owner: this.authService.getCurrentUser

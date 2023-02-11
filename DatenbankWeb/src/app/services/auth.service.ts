@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PocketBase, { BaseAuthStore, User } from 'pocketbase';
+import PocketBase, { BaseAuthStore } from 'pocketbase';
 import { LoginCredentials } from '../models/LoginCredentials';
 import { SinginCredentials } from '../models/SinginCredentials';
 import { PocketBaseService } from './pocket-base.service';
@@ -13,19 +13,20 @@ export class AuthService {
 
   constructor(private pocketBaseService: PocketBaseService) {
     this.client = pocketBaseService.client;
-   }
-  async authUser(credentials: LoginCredentials): Promise<void> {
-    await this.client.users.authViaEmail(credentials.email, credentials.password);
   }
 
-  createUser(credentials: SinginCredentials): Promise<User> {
-    const user = this.client.users.create({
-      email: credentials.email,
-      password: credentials.password1,
-      passwordConfirm: credentials.password2,
-    });
-    return user;
+  async authUser(credentials: LoginCredentials): Promise<void> {
+    await this.client.admins.authWithPassword(credentials.email, credentials.password);
   }
+
+  // createUser(credentials: SinginCredentials): Promise<User> {
+  //   const user = this.client.users.create({
+  //     email: credentials.email,
+  //     password: credentials.password1,
+  //     passwordConfirm: credentials.password2,
+  //   });
+  //   return user;
+  // }
 
   logout(): void {
     this.client.authStore.clear();
@@ -35,7 +36,13 @@ export class AuthService {
     return this.client.authStore;
   }
 
-  getUser(id: string): Promise<User> {
-    return this.client.users.getOne(id);
+  
+  public get isUserValid(): boolean {
+    return this.client.authStore.isValid;
   }
+  
+
+  // getUser(id: string): Promise<User> {
+  //   return this.client.users.getOne(id);
+  // }
 }

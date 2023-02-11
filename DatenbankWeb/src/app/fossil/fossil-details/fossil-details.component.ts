@@ -4,7 +4,6 @@ import { FossilsService } from 'src/app/services/fossils.service';
 
 import { Fossil } from 'src/app/models/fossil';
 import { environment } from 'src/environments/environment';
-import { User } from 'pocketbase';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class FossilDetailsComponent implements OnInit {
   fossil!: Fossil;
-  fossilOwner?: User;
+  // fossilOwner?: User;
   currentImg: number = 0;
   
   imgUrl?: string;
@@ -43,9 +42,9 @@ export class FossilDetailsComponent implements OnInit {
     
   //   async initialize(): Promise<void> {
   //     setTimeout(async () => {
-  //     // this.fossilOwner = await this.authService.getUser(this.fossil.owner_id);
-  //     // console.log(this.fossilOwner);
-  //     // console.log("SIS");
+  //     this.fossilOwner = await this.authService.getUser(this.fossil.owner_id);
+  //     console.log(this.fossilOwner);
+  //     console.log("SIS");
   //   }, 2000);
   // }
 

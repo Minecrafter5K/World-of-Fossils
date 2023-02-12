@@ -10,26 +10,24 @@ import { FossilsService } from '../../services/fossils.service';
 })
 export class CreateFossilComponent implements OnInit {
   @ViewChild('f') myForm!: NgForm;
-  @ViewChild('img') imgForm!: NgForm;
-  
-  onImageChange(): void {
-    const img = this.imgForm.value.img;
-    console.log(img);
-  }
-
-  async onFormSubmit(): Promise<void> {
-    const vaules = this.myForm.value;
-
-    const id = await this.FossilService.addFossil(vaules.title, vaules.desc);
-    this.router.navigate(['/', 'fossil', id]);
-  }
 
   constructor(
     private FossilService: FossilsService,
     private router: Router,
-  ) { }
+    ) { }
+    
+    ngOnInit(): void {
+    }
 
-  ngOnInit(): void {
-  }
-
+    async onFormSubmit(): Promise<void> {
+      const values = this.myForm.value;
+ 
+      const id = await this.FossilService.addFossil({
+        title: values.title,
+        description: values.description,
+        age: values.age,
+        owner: "gc7irch4qhq8jz0"
+      });
+      this.router.navigate(['/', 'fossil', id]);
+    }
 }

@@ -1,0 +1,26 @@
+@use "../../../styles";
+
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.view {
+    flex-direction: column;
+    max-width: 85vw;
+    width: 150vmin;
+    min-width: 75vmin;
+}
+
+input {
+    margin: 1rem;
+    accent-color: styles.$color-primary;
+}
+
+input:last-of-type {
+    margin: 2rem;
+}
+
+p {
+    margin-bottom: 0;
+}

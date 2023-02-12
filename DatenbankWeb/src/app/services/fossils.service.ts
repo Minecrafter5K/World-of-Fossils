@@ -3,6 +3,7 @@ import PocketBase from 'pocketbase';
 import { Record } from "pocketbase";
 import { environment } from 'src/environments/environment';
 import { Fossil } from '../models/fossil';
+import { NewFossil } from '../models/newFossil';
 import { AuthService } from './auth.service';
 import { PocketBaseService } from './pocket-base.service';
 
@@ -51,12 +52,8 @@ export class FossilsService {
   }
 
   // create new fossil
-  async addFossil(title: string, desc: string): Promise<string> {
-    const { id } = await this.client.collection('fossils').create({
-      title: title,
-      description: desc,
-      owner: this.authService.getCurrentUser
-    })
+  async addFossil(formData: NewFossil): Promise<string> {
+    const { id } = await this.client.collection('fossils').create(formData);
     return id;
   }
 

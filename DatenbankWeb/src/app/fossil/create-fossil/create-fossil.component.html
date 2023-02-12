@@ -1,9 +1,17 @@
-<form (ngSubmit)="onImageChange()" #img="ngForm" action="" method="dialog">
-    <input type="file" name="img" onchange=' if(this.FileList != 0) { this.form.submit() } '>
-</form>
-
-<form (ngSubmit)="onFormSubmit()" #f="ngForm">
-    <input type="text" name="title" placeholder="title" ngModel>
-    <input type="text" name="desc" placeholder="description" ngModel>
-    <input type="submit">
-</form>
+<div class="view">
+    <h1>Upload a new Fossil</h1>
+    <form (ngSubmit)="onFormSubmit()" #f="ngForm">
+        <p>Title:</p>
+        <input type="text" name="title" placeholder="Title" ngModel>
+        <p>Description:</p>
+        <input type="text" name="description" placeholder="A short description" ngModel>
+        <p>Age:</p>
+        <input type="number" name="age" placeholder="Age of the Fossil" ngModel>
+        <p>Images:</p>
+        <input type="file" name="image">
+        <p>3D Model:</p>
+        <input type="file" name="model">
+        <br>
+        <input type="submit">
+    </form>
+</div>

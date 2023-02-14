@@ -1,0 +1,13 @@
+@use "../../../styles";
+
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.view {
+    flex-direction: column;
+    max-width: 85vw;
+    width: 150vmin;
+    min-width: 75vmin;
+}

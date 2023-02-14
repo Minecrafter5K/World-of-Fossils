@@ -8,9 +8,9 @@
         <p>Age:</p>
         <input type="number" name="age" placeholder="Age of the Fossil" ngModel>
         <p>Images:</p>
-        <input type="file" name="image">
+        <input type="file" name="image" (change)="onImageSelected($event)">
         <p>3D Model:</p>
-        <input type="file" name="model">
+        <input type="file" name="model" (change)="onModelSelected($event)">
         <br>
         <input type="submit">
     </form>

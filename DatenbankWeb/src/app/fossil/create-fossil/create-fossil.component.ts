@@ -42,6 +42,6 @@ export class CreateFossilComponent implements OnInit {
       this.imageFile = event.target.files[0];
     }
     onModelSelected(event:any) {
-      this.imageFile = event.target.files[0];
+      this.modelFile = event.target.files[0];
     }
 }

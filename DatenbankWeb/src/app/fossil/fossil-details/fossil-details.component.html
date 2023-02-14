@@ -1,6 +1,7 @@
 <div class="view" *ngIf="fossil">
     <h1>{{fossil.title}}</h1>
     <p>{{fossil.age}} Years old</p>
+    <p>From {{fossil.location}}</p>
     <!-- <p style="font-style: italic;">{{fossilOwner?.email}}</p> -->
     <div class="gallery">
         <button (click)="beforeImg()"><-</button>

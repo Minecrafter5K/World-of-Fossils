@@ -31,7 +31,7 @@ export class CreateFossilComponent implements OnInit {
       newFossil.append("age", values.age)
       newFossil.append("owner", "gc7irch4qhq8jz0")
       newFossil.append("image", this.imageFile);
-      newFossil.append("model", this.imageFile);
+      newFossil.append("model", this.modelFile);
 
       const id = await this.FossilService.addFossil(newFossil)
 

@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   async authUser(credentials: LoginCredentials): Promise<void> {
-    await this.client.admins.authWithPassword(credentials.email, credentials.password);
+    await this.client.collection('users').authWithPassword(credentials.email, credentials.password);
   }
 
   // createUser(credentials: SinginCredentials): Promise<User> {

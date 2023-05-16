@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SinginCredentials } from 'src/app/models/SinginCredentials';
 import { AuthService } from '../../services/auth.service';
+import { BaseAuthStore } from 'pocketbase';
 
 @Component({
   selector: 'app-singin',
@@ -15,20 +16,18 @@ export class SinginComponent implements OnInit {
     password1: '',
     password2: ''
   }
-  // user?: Promise<User>;
 
   constructor(
     private AuthService: AuthService,
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
   async onSubmit(): Promise<void> {
-    // this.user = this.AuthService.createUser(this.credentials);
-    
-    // this.user?.then(() => /* this.router.navigate(['/']) */ console.log("signed in"));
+    await this.AuthService.createUser(this.credentials);
+
+    this.router.navigate(['/']);
   }
 
   getErrPayload(err: ValidationErrors | null, errType: string) {

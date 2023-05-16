@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import PocketBase from 'pocketbase';
-import { Record } from "pocketbase";
+import PocketBase, { Record } from 'pocketbase';
 import { environment } from 'src/environments/environment';
 import { Fossil } from '../models/fossil';
 import { AuthService } from './auth.service';

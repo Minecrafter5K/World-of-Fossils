@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(): Promise<void> {
     this.AuthService.authUser(this.credentials);
-    
-    // this.router.navigate(['/']);
+
+    this.router.navigate(['/']);
   }
 
   getErrPayload(err: ValidationErrors | null, errType: string) {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   logout(): void {
     this.AuthService.logout();
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
   reload(): void {
     this.user = this.AuthService.getCurrentUser.model?.email;

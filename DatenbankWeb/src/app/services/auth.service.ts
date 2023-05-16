@@ -19,14 +19,14 @@ export class AuthService {
     await this.client.collection('users').authWithPassword(credentials.email, credentials.password);
   }
 
-  // createUser(credentials: SinginCredentials): Promise<User> {
-  //   const user = this.client.users.create({
-  //     email: credentials.email,
-  //     password: credentials.password1,
-  //     passwordConfirm: credentials.password2,
-  //   });
-  //   return user;
-  // }
+  async createUser(credentials: SinginCredentials): Promise<void> {
+    await this.client.collection('users').create({
+      email: credentials.email,
+      password: credentials.password1,
+      passwordConfirm: credentials.password2,
+    });
+    this.authUser({email: credentials.email, password: credentials.password1})
+  }
 
   logout(): void {
     this.client.authStore.clear();
@@ -36,11 +36,11 @@ export class AuthService {
     return this.client.authStore;
   }
 
-  
+
   public get isUserValid(): boolean {
     return this.client.authStore.isValid;
   }
-  
+
 
   // getUser(id: string): Promise<User> {
   //   return this.client.users.getOne(id);

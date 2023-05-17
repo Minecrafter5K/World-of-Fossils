@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FossilsService } from '../../services/fossils.service';
-import { Fossil } from '../../models/Fossil';
+import { Fossil } from '../../models/fossil';
 
 @Component({
   selector: 'app-explore',

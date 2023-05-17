@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FossilsService } from 'src/app/services/fossils.service';
 
-import { Fossil } from 'src/app/models/Fossil';
+import { Fossil } from 'src/app/models/fossil';
 import { environment } from 'src/environments/environment';
 
 @Component({

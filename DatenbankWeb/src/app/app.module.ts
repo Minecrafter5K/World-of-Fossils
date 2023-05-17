@@ -31,14 +31,10 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
     ThreeDViewComponent,
     SinginComponent,
     DashboardComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

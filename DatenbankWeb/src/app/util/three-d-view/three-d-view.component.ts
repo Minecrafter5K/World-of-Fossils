@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
-import { Fossil } from 'src/app/models/fossil';
+import { Fossil } from 'src/app/models/Fossil';
 import { environment } from 'src/environments/environment';
 
 
@@ -82,7 +82,7 @@ export class ThreeDViewComponent implements OnInit {
     // // renderer.domElement.style.top = '0px';
     // const rendererElement = document.getElementById("renderer")
     // console.log(renderer.domElement);
-    
+
     // rendererElement!.outerHTML = renderer.domElement;
     this.controls = new OrbitControls(this.camera, document.getElementById("renderer")!);
     this.controls.autoRotate = true;

@@ -1,16 +1,18 @@
 <div class="view" *ngIf="fossil">
-    <h1>{{fossil.title}}</h1>
-    <p>{{fossil.age}} Years old</p>
-    <p>From {{fossil.location}}</p>
-    <!-- <p style="font-style: italic;">{{fossilOwner?.email}}</p> -->
-    <div class="gallery">
-        <button (click)="beforeImg()"><-</button>
-        <div class="model" *ngIf="currentImg < 0">
-            <app-three-d-view [fossil]="fossil"></app-three-d-view>
-        </div>
-        <img src="{{imgUrl}}" alt="image" class="image" *ngIf="currentImg >= 0">
-        <button (click)="nextImg()">-></button>
+  <h1>{{fossil.title}}</h1>
+  <p>{{fossil.age}} Years old</p>
+  <p style="font-style: italic;">{{fossil.owner.username}}</p>
+
+  <div class="gallery">
+    <button (click)="beforeImg()"><-</button>
+    <div class="model" *ngIf="currentImg < 0">
+      <app-three-d-view [fossil]="fossil"></app-three-d-view>
     </div>
-    <p class="img-counter">{{currentImg + 2}} from {{fossil.image.length + 1}}</p>
-    <p>{{fossil.description}}</p>
+    <img *ngIf="currentImg >= 0" src="{{fossil.imageURL[currentImg]}}" alt="image" class="image">
+    <button (click)="nextImg()">-></button>
+  </div>
+
+  <p class="img-counter">{{currentImg + 2}} from {{fossil.image.length + 1}}</p>
+  <p>From {{fossil.location}}</p>
+  <p>{{fossil.description}}</p>
 </div>

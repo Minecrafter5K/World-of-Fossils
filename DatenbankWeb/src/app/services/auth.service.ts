@@ -42,7 +42,7 @@ export class AuthService {
   }
 
 
-  // getUser(id: string): Promise<User> {
-  //   return this.client.users.getOne(id);
-  // }
+  getUser(id: string): Promise<BaseAuthStore> {
+    return this.client.collection('users').getOne(id);
+  }
 }

@@ -10,24 +10,26 @@
                 </select>
             </form>
         </div>
-        
-        <div *ngFor="let fossil of fossils" class="list">
-            <a href="/fossil/{{fossil.id}}" class="main-a">
+
+        <div *ngIf="fossils">
+            <div *ngFor="let fossil of fossils" class="list">
+                <a href="/fossil/{{fossil.id}}" class="main-a">
                 <div class="left">
-                    <img src="{{fossil.imageURL[0]}}" alt="img from fossil" class="img-title">
+                    <img src="{{fossil.imageURL}}" alt="img from fossil" class="img-title">
                     <div class="details">
                         <h3 class="title">{{fossil.title}}</h3>
                         <p class="desc">{{fossil.description}}</p>
                     </div>
                 </div>
-                <div class="infos">
-                    <p>Owner: [fossil.Owner]</p>
+                    <div class="infos">
+                    <p *ngIf="fossil.owner">Owner: {{fossil.owner.username}}</p>
                     <p>Age: {{fossil.age}}</p>
-                </div>
-            </a>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    
+
     <div class="site-controls">
         <a class="previous" routerLink="/explore/{{currentPage - 1}}/{{currentSort}}">Previous Page</a>
         <a class="next" routerLink="/explore/{{currentPage + 1}}/{{currentSort}}">Next Page</a>

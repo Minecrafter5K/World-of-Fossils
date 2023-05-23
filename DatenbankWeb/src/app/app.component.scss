@@ -1,27 +1,32 @@
 @use "../styles";
 
 header {
-    display: flex;
-    justify-content: space-between;
-    background-color: styles.$color-secondary-dark;
-    margin: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: styles.$secondary-button;
+  margin: 0;
 }
 
 header .left h2 {
-    margin: 0;
-    padding: 2rem;
-    cursor: pointer;
-    color: styles.$color-primary;
+  margin: 0;
+  padding: 2rem;
+  cursor: pointer;
+  color: styles.$text;
+}
 
+header .left span {
+  background: linear-gradient(120deg, styles.$primary-button, styles.$accent);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header .right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 header .right a {
-    margin: 1rem;
-    color: white;
-    text-decoration: none;
+  margin: 1rem;
+  color: white;
+  text-decoration: none;
 }

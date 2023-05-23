@@ -15,6 +15,8 @@ import { ThreeDViewComponent } from './util/three-d-view/three-d-view.component'
 import { SinginComponent } from './user/singin/singin.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { WelcomeComponent } from './util/welcome/welcome.component';
+import { TextInputComponent } from './fundermental-components/text-input/text-input.component';
+import { ButtonComponent } from './fundermental-components/button/button.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
     SinginComponent,
     DashboardComponent,
     WelcomeComponent,
+    TextInputComponent,
+    ButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

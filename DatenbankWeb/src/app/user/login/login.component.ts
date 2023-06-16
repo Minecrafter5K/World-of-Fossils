@@ -7,19 +7,16 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   credentials: LoginCredentials = {
     email: '',
-    password: ''
-  }
+    password: '',
+  };
   user?: string;
 
-  constructor(
-    private AuthService: AuthService,
-    private router: Router,
-  ) { }
+  constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.reload();

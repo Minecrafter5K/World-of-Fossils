@@ -21,8 +21,10 @@
     {{ currentImg + 2 }} from {{ fossil.image.length + 1 }}
   </p>
   <div class="likeView">
-    <p>{{likesAmount}} Likes</p>
-    <button (click)="onLike()" class="likeButton" [class]="isLiked">Like</button>
+    <p>{{ likesAmount }} Likes</p>
+    <button (click)="onLike()" class="likeButton" [class]="isLiked">
+      Like
+    </button>
   </div>
   <p>From {{ fossil.location }}</p>
   <p>{{ fossil.description }}</p>

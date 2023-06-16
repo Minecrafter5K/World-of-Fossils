@@ -8,9 +8,8 @@ describe('ThreeDViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThreeDViewComponent ]
-    })
-    .compileComponents();
+      declarations: [ThreeDViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ThreeDViewComponent);
     component = fixture.componentInstance;

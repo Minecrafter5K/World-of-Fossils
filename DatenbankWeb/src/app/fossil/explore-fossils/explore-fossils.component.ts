@@ -7,20 +7,20 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-explore',
   templateUrl: './explore-fossils.component.html',
-  styleUrls: ['./explore-fossils.component.scss']
+  styleUrls: ['./explore-fossils.component.scss'],
 })
 export class ExploreFossilsComponent implements OnInit {
   fossils?: Fossil[];
   sortBy = new FormControl('');
 
   currentPage: number = 1;
-  currentSort: string = "id";
+  currentSort: string = 'id';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private FossilService: FossilsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(async (params) => {
@@ -33,7 +33,11 @@ export class ExploreFossilsComponent implements OnInit {
   }
 
   async getFossils(): Promise<void> {
-    this.fossils = await this.FossilService.getFossils(this.currentPage, 15, this.currentSort);
+    this.fossils = await this.FossilService.getFossils(
+      this.currentPage,
+      15,
+      this.currentSort
+    );
     console.log(this.fossils); // TODO remove
   }
 

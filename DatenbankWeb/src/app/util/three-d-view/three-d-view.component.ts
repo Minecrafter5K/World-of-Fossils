@@ -1,16 +1,15 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
+import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { Fossil } from 'src/app/models/fossil';
 import { environment } from 'src/environments/environment';
-
 
 @Component({
   selector: 'app-three-d-view',
   templateUrl: './three-d-view.component.html',
-  styleUrls: ['./three-d-view.component.scss']
+  styleUrls: ['./three-d-view.component.scss'],
 })
 export class ThreeDViewComponent implements OnInit {
   @ViewChild('canvas') private canvasRef!: ElementRef;
@@ -84,7 +83,10 @@ export class ThreeDViewComponent implements OnInit {
     // console.log(renderer.domElement);
 
     // rendererElement!.outerHTML = renderer.domElement;
-    this.controls = new OrbitControls(this.camera, document.getElementById("renderer")!);
+    this.controls = new OrbitControls(
+      this.camera,
+      document.getElementById('renderer')!
+    );
     this.controls.autoRotate = true;
     this.controls.enableZoom = true;
     this.controls.enablePan = false;
@@ -100,7 +102,7 @@ export class ThreeDViewComponent implements OnInit {
   private createScene() {
     //* Scene
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xd4d4d8)
+    this.scene.background = new THREE.Color(0xd4d4d8);
     this.loaderGLTF.load(this.modelUrl, (gltf: GLTF) => {
       this.model = gltf.scene.children[0];
       var box = new THREE.Box3().setFromObject(this.model);
@@ -115,7 +117,7 @@ export class ThreeDViewComponent implements OnInit {
       aspectRatio,
       this.nearClippingPane,
       this.farClippingPane
-    )
+    );
     this.camera.position.x = 100;
     this.camera.position.y = 100;
     this.camera.position.z = 100;
@@ -144,15 +146,18 @@ export class ThreeDViewComponent implements OnInit {
   }
 
   /**
- * Start the rendering loop
- *
- * @private
- * @memberof CubeComponent
- */
+   * Start the rendering loop
+   *
+   * @private
+   * @memberof CubeComponent
+   */
   private startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true });
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      antialias: true,
+    });
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: ThreeDViewComponent = this;
@@ -160,17 +165,20 @@ export class ThreeDViewComponent implements OnInit {
       component.renderer.render(component.scene, component.camera);
       // component.animateModel();
       requestAnimationFrame(render);
-    }());
+    })();
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
-    this.modelUrl = environment.pocketbase_url + "api/files/fossils/" + this.fossil?.id + "/" + this.fossil?.model;
+    this.modelUrl =
+      environment.pocketbase_url +
+      'api/files/fossils/' +
+      this.fossil?.id +
+      '/' +
+      this.fossil?.model;
     // console.log(this.modelUrl);
 
     this.createScene();

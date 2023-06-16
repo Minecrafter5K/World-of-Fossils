@@ -24,7 +24,12 @@ export class FossilLikeService {
     const likes = allLikes.filter((like) => {
       return like.fossil === fossilId;
     });
-    return [likes.length, likes.some((like) => like.user === this.authService.getCurrentUser.model?.id)];
+    return [
+      likes.length,
+      likes.some(
+        (like) => like.user === this.authService.getCurrentUser.model?.id
+      ),
+    ];
   }
 
   likeFossil(id: string) {

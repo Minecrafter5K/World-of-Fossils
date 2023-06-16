@@ -4,5 +4,5 @@
 };*/
 export const environment = {
   production: false,
-  pocketbase_url: "https://api.theworldoffossils.de/pb/",
+  pocketbase_url: 'https://api.theworldoffossils.de/pb/',
 };

@@ -8,21 +8,18 @@ import { BaseAuthStore } from 'pocketbase';
 @Component({
   selector: 'app-singin',
   templateUrl: './singin.component.html',
-  styleUrls: ['./singin.component.scss']
+  styleUrls: ['./singin.component.scss'],
 })
 export class SinginComponent implements OnInit {
   credentials: SinginCredentials = {
     email: '',
     password1: '',
-    password2: ''
-  }
+    password2: '',
+  };
 
-  constructor(
-    private AuthService: AuthService,
-    private router: Router,
-  ) { }
+  constructor(private AuthService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {}
 
   async onSubmit(): Promise<void> {
     await this.AuthService.createUser(this.credentials);

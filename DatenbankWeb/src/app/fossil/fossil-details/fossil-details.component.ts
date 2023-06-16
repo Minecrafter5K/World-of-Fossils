@@ -9,53 +9,55 @@ import { FossilLikeService } from 'src/app/services/fossil-like.service';
 @Component({
   selector: 'app-fossil-details',
   templateUrl: './fossil-details.component.html',
-  styleUrls: ['./fossil-details.component.scss']
+  styleUrls: ['./fossil-details.component.scss'],
 })
 export class FossilDetailsComponent implements OnInit {
   fossil?: Fossil;
   currentImg: number = 0;
   likesAmount: number = 0;
-  isLiked: string = "unliked";
+  isLiked: string = 'unliked';
 
   constructor(
     private route: ActivatedRoute,
     private fossilService: FossilsService,
-    private fossilLikeService: FossilLikeService,
-    ) { }
+    private fossilLikeService: FossilLikeService
+  ) {}
 
-    ngOnInit(): void {
-      this.getFossil()
-    }
+  ngOnInit(): void {
+    this.getFossil();
+  }
 
-    async getFossil(): Promise<void> {
-      this.route.paramMap.subscribe(async (params) => {
-        const id: string = params.get('id')!;
-        this.fossil = await this.fossilService.getFossilDetails(id);
-        console.log(this.fossil);
-        this.fossilLikeService.getFossilLikesAmount(this.fossil!.id).then(([amount, isLiked]) => {
+  async getFossil(): Promise<void> {
+    this.route.paramMap.subscribe(async (params) => {
+      const id: string = params.get('id')!;
+      this.fossil = await this.fossilService.getFossilDetails(id);
+      console.log(this.fossil);
+      this.fossilLikeService
+        .getFossilLikesAmount(this.fossil!.id)
+        .then(([amount, isLiked]) => {
           this.likesAmount = amount;
-          this.isLiked = isLiked ? "liked" : "unliked";
+          this.isLiked = isLiked ? 'liked' : 'unliked';
         });
-      });
-    }
+    });
+  }
 
-    onLike(): void {
-      if (this.isLiked === "unliked") {
-        this.fossilLikeService.likeFossil(this.fossil!.id);
-        this.likesAmount ++;
-        this.isLiked = "liked";
-      }
+  onLike(): void {
+    if (this.isLiked === 'unliked') {
+      this.fossilLikeService.likeFossil(this.fossil!.id);
+      this.likesAmount++;
+      this.isLiked = 'liked';
     }
+  }
 
   nextImg(): void {
     if (this.fossil && this.currentImg < this.fossil.image.length - 1) {
-      this.currentImg ++;
+      this.currentImg++;
     }
   }
 
   beforeImg(): void {
     if (this.fossil && this.currentImg >= 0) {
-      this.currentImg --;
+      this.currentImg--;
     }
   }
 }

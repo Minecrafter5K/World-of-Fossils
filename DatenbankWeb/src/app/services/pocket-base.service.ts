@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PocketBaseService {
-
   client: PocketBase;
 
   constructor() {

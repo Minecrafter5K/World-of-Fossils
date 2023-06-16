@@ -3,7 +3,7 @@
   <p>{{ fossil.age }} Years old</p>
   <p style="font-style: italic">{{ fossil.owner.username }}</p>
 
-  <div class="gallery">
+  <div class="gallery" *ngIf="!fossil.image && !fossil.model">
     <button (click)="beforeImg()"><-</button>
     <div class="model" *ngIf="currentImg < 0">
       <app-three-d-view [fossil]="fossil"></app-three-d-view>

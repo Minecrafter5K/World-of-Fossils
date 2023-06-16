@@ -41,6 +41,7 @@ export class ExploreFossilsComponent implements OnInit {
     this.sortBy.valueChanges.subscribe((value) => {
       if (value) this.currentSort = value;
       this.router.navigate(['explore', this.currentPage, this.currentSort]);
+      this.getFossils();
     });
   }
 }

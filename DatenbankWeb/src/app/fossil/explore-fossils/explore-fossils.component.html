@@ -4,9 +4,11 @@
       <p>Filter:</p>
       <label for="sortby">Sort by</label>
       <select name="sortby" [formControl]="sortBy">
-        <option value="nothing">pls select</option>
+        <option value="@random">pls select</option>
         <option value="id">id</option>
-        <option value="created">date</option>
+        <option value="updated">Updated</option>
+        <option value="created">Created</option>
+        <option value="age">Age</option>
       </select>
     </div>
 

@@ -17,14 +17,14 @@ export class FossilLikeService {
     this.client = pocketBaseService.client;
   }
 
-  async getFossilLikesAmount(fossilId: string): Promise<number> {
+  async getFossilLikesAmount(fossilId: string): Promise<[number, boolean]> {
     const allLikes = (await this.client
       .collection('fossilLikes')
       .getFullList()) as unknown as FossilLike[];
     const likes = allLikes.filter((like) => {
       return like.fossil === fossilId;
     });
-    return likes.length;
+    return [likes.length, likes.some((like) => like.user === this.authService.getCurrentUser.model?.id)];
   }
 
   likeFossil(id: string) {

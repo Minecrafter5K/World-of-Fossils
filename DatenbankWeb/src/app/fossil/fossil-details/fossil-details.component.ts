@@ -15,6 +15,7 @@ export class FossilDetailsComponent implements OnInit {
   fossil?: Fossil;
   currentImg: number = 0;
   likesAmount: number = 0;
+  isLiked: string = "unliked";
 
   constructor(
     private route: ActivatedRoute,
@@ -31,15 +32,19 @@ export class FossilDetailsComponent implements OnInit {
         const id: string = params.get('id')!;
         this.fossil = await this.fossilService.getFossilDetails(id);
         console.log(this.fossil);
-        this.fossilLikeService.getFossilLikesAmount(this.fossil!.id).then(amount => {
+        this.fossilLikeService.getFossilLikesAmount(this.fossil!.id).then(([amount, isLiked]) => {
           this.likesAmount = amount;
+          this.isLiked = isLiked ? "liked" : "unliked";
         });
       });
     }
 
     onLike(): void {
-      this.fossilLikeService.likeFossil(this.fossil!.id);
-      this.likesAmount ++;
+      if (this.isLiked === "unliked") {
+        this.fossilLikeService.likeFossil(this.fossil!.id);
+        this.likesAmount ++;
+        this.isLiked = "liked";
+      }
     }
 
   nextImg(): void {

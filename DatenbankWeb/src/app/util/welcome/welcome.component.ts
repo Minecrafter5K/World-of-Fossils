@@ -8,11 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-  user?: BaseAuthStore;
+  constructor() {}
 
-  constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {
-    this.user = this.authService.getCurrentUser;
-  }
+  ngOnInit(): void {}
 }

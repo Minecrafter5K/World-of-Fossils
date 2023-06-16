@@ -2,16 +2,12 @@
   <div class="top">
     <div class="controls">
       <p>Filter:</p>
-      <form method="get">
-        <select
-          name="sortby"
-          onchange="if(this.value != 0) { this.form.submit(); }"
-        >
-          <option value="nothing">pls select</option>
-          <option value="id">id</option>
-          <option value="created">date</option>
-        </select>
-      </form>
+      <label for="sortby">Sort by</label>
+      <select name="sortby" [formControl]="sortBy">
+        <option value="nothing">pls select</option>
+        <option value="id">id</option>
+        <option value="created">date</option>
+      </select>
     </div>
 
     <div *ngIf="fossils">

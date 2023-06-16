@@ -8,14 +8,13 @@ import { NotFoundComponent } from './util/not-found/not-found.component';
 import { HomeComponent } from './util/home/home.component';
 import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
 import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadImagesComponent } from './util/upload-images/upload-images.component';
 import { LoginComponent } from './user/login/login.component';
 import { ThreeDViewComponent } from './util/three-d-view/three-d-view.component';
 import { SinginComponent } from './user/singin/singin.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { WelcomeComponent } from './util/welcome/welcome.component';
-
 
 @NgModule({
   declarations: [
@@ -33,7 +32,7 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
     DashboardComponent,
     WelcomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

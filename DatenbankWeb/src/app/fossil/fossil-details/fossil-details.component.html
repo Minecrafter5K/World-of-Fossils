@@ -1,18 +1,25 @@
 <div class="view" *ngIf="fossil">
-  <h1>{{fossil.title}}</h1>
-  <p>{{fossil.age}} Years old</p>
-  <p style="font-style: italic;">{{fossil.owner.username}}</p>
+  <h1>{{ fossil.title }}</h1>
+  <p>{{ fossil.age }} Years old</p>
+  <p style="font-style: italic">{{ fossil.owner.username }}</p>
 
   <div class="gallery">
     <button (click)="beforeImg()"><-</button>
     <div class="model" *ngIf="currentImg < 0">
       <app-three-d-view [fossil]="fossil"></app-three-d-view>
     </div>
-    <img *ngIf="currentImg >= 0" src="{{fossil.imageURL[currentImg]}}" alt="image" class="image">
+    <img
+      *ngIf="currentImg >= 0"
+      src="{{ fossil.imageURL[currentImg] }}"
+      alt="image"
+      class="image"
+    />
     <button (click)="nextImg()">-></button>
   </div>
 
-  <p class="img-counter">{{currentImg + 2}} from {{fossil.image.length + 1}}</p>
-  <p>From {{fossil.location}}</p>
-  <p>{{fossil.description}}</p>
+  <p class="img-counter">
+    {{ currentImg + 2 }} from {{ fossil.image.length + 1 }}
+  </p>
+  <p>From {{ fossil.location }}</p>
+  <p>{{ fossil.description }}</p>
 </div>

@@ -4,6 +4,7 @@ import { FossilsService } from 'src/app/services/fossils.service';
 
 import { Fossil } from 'src/app/models/fossil';
 import { environment } from 'src/environments/environment';
+import { FossilLikeService } from 'src/app/services/fossil-like.service';
 
 @Component({
   selector: 'app-fossil-details',
@@ -13,10 +14,12 @@ import { environment } from 'src/environments/environment';
 export class FossilDetailsComponent implements OnInit {
   fossil?: Fossil;
   currentImg: number = 0;
+  likesAmount: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private fossilService: FossilsService,
+    private fossilLikeService: FossilLikeService,
     ) { }
 
     ngOnInit(): void {
@@ -28,10 +31,16 @@ export class FossilDetailsComponent implements OnInit {
         const id: string = params.get('id')!;
         this.fossil = await this.fossilService.getFossilDetails(id);
         console.log(this.fossil);
-
+        this.fossilLikeService.getFossilLikesAmount(this.fossil!.id).then(amount => {
+          this.likesAmount = amount;
+        });
       });
     }
 
+    onLike(): void {
+      this.fossilLikeService.likeFossil(this.fossil!.id);
+      this.likesAmount ++;
+    }
 
   nextImg(): void {
     if (this.fossil && this.currentImg < this.fossil.image.length - 1) {

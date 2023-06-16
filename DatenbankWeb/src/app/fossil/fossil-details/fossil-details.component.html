@@ -3,7 +3,7 @@
   <p>{{ fossil.age }} Years old</p>
   <p style="font-style: italic">{{ fossil.owner.username }}</p>
 
-  <div class="gallery" *ngIf="!fossil.image && !fossil.model">
+  <div class="gallery">
     <button (click)="beforeImg()"><-</button>
     <div class="model" *ngIf="currentImg < 0">
       <app-three-d-view [fossil]="fossil"></app-three-d-view>
@@ -20,6 +20,10 @@
   <p class="img-counter">
     {{ currentImg + 2 }} from {{ fossil.image.length + 1 }}
   </p>
+  <div>
+    <p>{{likesAmount}} Likes</p>
+    <button (click)="onLike()">Like</button>
+  </div>
   <p>From {{ fossil.location }}</p>
   <p>{{ fossil.description }}</p>
 </div>

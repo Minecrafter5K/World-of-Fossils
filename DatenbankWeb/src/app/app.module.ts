@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FossilDetailsComponent } from './fossil/fossil-details/fossil-details.component';
 import { NotFoundComponent } from './util/not-found/not-found.component';
-import { HomeComponent } from './util/home/home.component';
 import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
 import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +21,6 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
     ThreeDViewComponent,
     FossilDetailsComponent,
     NotFoundComponent,
-    HomeComponent,
     ExploreFossilsComponent,
     CreateFossilComponent,
     UploadImagesComponent,

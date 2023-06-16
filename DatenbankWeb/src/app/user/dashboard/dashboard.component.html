@@ -1,1 +1,4 @@
-<p>dashboard works!</p>
+<div class="view">
+  <h1>Home</h1>
+  <p *ngIf="user && user.isValid">Hello,&nbsp;{{ user.model?.['name'] }}!</p>
+</div>

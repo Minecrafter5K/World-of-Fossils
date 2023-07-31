@@ -7,7 +7,73 @@
 
 .view {
     flex-direction: column;
-    max-width: 85vw;
-    width: 150vmin;
-    min-width: 75vmin;
+    width: min(100% - 1rem, 150rem);
+}
+
+button {
+  border: unset;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+  background-color: styles.$primary;
+
+  padding: 0 15px;
+  margin-top: 1rem;
+
+  font-size: 15px;
+  height: 35px;
+
+  color: color-mix(in srgb, styles.$text 25%, black);
+}
+
+button[disabled] {
+  background-color: color-mix(in srgb, styles.$primary 50%, white);
+  color: color-mix(in srgb, styles.$text 75%, white);
+}
+
+.Fieldset {
+  border: unset;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+label {
+  width: 90px;
+  text-align: right;
+}
+
+input {
+  border: unset;
+  width: 100%;
+  height: 35px;
+
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+  border: 2px solid styles.$accent;
+
+  background-color: transparent;
+
+  padding: 0 10px;
+
+  font-size: 15px;
+  line-height: 1;
+
+  box-shadow: 0px 4px 4px 0px black;
+}
+
+input:hover {
+  background-color: styles.$highlight-25;
+}
+
+input:focus {
+  background-color: styles.$highlight-25;
 }

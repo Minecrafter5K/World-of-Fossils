@@ -7,15 +7,10 @@
 
 .view {
     flex-direction: column;
-    max-width: 85vw;
-    width: 150vmin;
-    min-width: 75vmin;
+    width: min(100% - 1rem, 150rem);
 }
 
 @media (max-width: 1200px) {
-    .view {
-        width: 100%;
-    }
     .gallery {
         height: 50vmax;
     }
@@ -64,9 +59,9 @@ button {
 }
 
 .unliked {
-    background-color: styles.$primary-button;
+    background-color: styles.$primary;
 }
 
 .liked {
-    background-color: styles.$secondary-button;
+    background-color: styles.$secondary;
 }

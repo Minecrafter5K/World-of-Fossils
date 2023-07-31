@@ -19,28 +19,11 @@ export class LoginComponent implements OnInit {
   constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.reload();
   }
 
   async onSubmit(): Promise<void> {
     this.AuthService.authUser(this.credentials);
 
     this.router.navigate(['/']);
-  }
-
-  getErrPayload(err: ValidationErrors | null, errType: string) {
-    if (err && err[errType]) {
-      return err[errType];
-    }
-    return {};
-  }
-
-  logout(): void {
-    this.AuthService.logout();
-    this.router.navigate(['/']);
-  }
-  reload(): void {
-    this.user = this.AuthService.getCurrentUser.model?.email;
-    console.log(this.AuthService.getCurrentUser);
   }
 }

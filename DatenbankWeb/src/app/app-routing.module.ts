@@ -9,6 +9,7 @@ import { SinginComponent } from './user/singin/singin.component';
 import { WelcomeComponent } from './util/welcome/welcome.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { LoginActivateGuard } from './guards/login-activate.guard';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
   { path: 'explore', redirectTo: 'explore/1/id', pathMatch: 'full' },
   { path: 'fossil/:id', component: FossilDetailsComponent },
   { path: 'new', component: CreateFossilComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [LoginActivateGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SinginComponent },
   { path: '**', component: NotFoundComponent },

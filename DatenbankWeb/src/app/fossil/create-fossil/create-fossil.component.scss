@@ -7,9 +7,7 @@
 
 .view {
     flex-direction: column;
-    max-width: 85vw;
-    width: 150vmin;
-    min-width: 75vmin;
+    width: min(100% - 1rem, 150rem);
 }
 
 input {

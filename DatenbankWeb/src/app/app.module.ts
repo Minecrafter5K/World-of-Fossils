@@ -14,6 +14,7 @@ import { ThreeDViewComponent } from './util/three-d-view/three-d-view.component'
 import { SinginComponent } from './user/singin/singin.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { WelcomeComponent } from './util/welcome/welcome.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { WelcomeComponent } from './util/welcome/welcome.component';
     SinginComponent,
     DashboardComponent,
     WelcomeComponent,
+    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

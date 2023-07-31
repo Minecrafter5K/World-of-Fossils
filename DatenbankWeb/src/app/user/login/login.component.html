@@ -2,50 +2,54 @@
   <h1>Login</h1>
 
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <label for="email">Email or Username</label>
-    <input
-      name="email"
-      class="form-control"
-      type="text"
-      required
-      text
-      [(ngModel)]="credentials.email"
-      #emailOrUserInput="ngModel"
-    />
-    <div
-      class="text-danger"
-      *ngIf="emailOrUserInput.invalid && emailOrUserInput.dirty"
-    >
-      <small *ngIf="emailOrUserInput.hasError('required')"
-        >Email or Username is required!</small
-      >
+    <div class="Fieldset">
+      <label for="email">Email or Username</label>
+      <div>
+        <input
+          name="email"
+          class="form-control"
+          type="text"
+          required
+          text
+          [(ngModel)]="credentials.email"
+          #emailOrUserInput="ngModel"
+        />
+        <div
+          class="text-danger"
+          *ngIf="emailOrUserInput.invalid && emailOrUserInput.dirty"
+        >
+          <small *ngIf="emailOrUserInput.hasError('required')"
+            >Email or Username is required!</small
+          >
+        </div>
+      </div>
     </div>
 
-    <label for="password1">Password</label>
-    <input
-      name="password1"
-      class="form-control"
-      type="password"
-      required
-      [(ngModel)]="credentials.password"
-      #passwordInput1="ngModel"
-    />
-    <div
-      class="text-danger"
-      *ngIf="passwordInput1.invalid && passwordInput1.dirty"
-    >
-      <small *ngIf="passwordInput1.hasError('required')"
-        >Password is required!</small
-      >
+    <div class="Fieldset">
+      <label for="password1">Password</label>
+      <div>
+        <input
+          name="password1"
+          class="form-control"
+          type="password"
+          required
+          minlength="8"
+          [(ngModel)]="credentials.password"
+          #passwordInput1="ngModel"
+        />
+        <div
+          class="text-danger"
+          *ngIf="passwordInput1.invalid && passwordInput1.dirty"
+        >
+          <small *ngIf="passwordInput1.hasError('required')"
+            >Password is required!</small
+          >
+        </div>
+      </div>
     </div>
 
     <button [disabled]="loginForm.invalid" type="submit">Login</button>
   </form>
 
   <p>or <a routerLink="/signin">signin</a></p>
-  <p>or</p>
-  <button (click)="logout()">Logout</button>
-  <br /><br />
-  <p>User: {{ user }}</p>
-  <button (click)="reload()">reload</button>
 </div>

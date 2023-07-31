@@ -18,7 +18,10 @@ export class LoginActivateGuard  {
     | boolean
     | UrlTree {
     if (!this.authService.isUserValid) {
-      this.router.navigate(['welcome'], { skipLocationChange: true });
+      const path = state.url;
+
+      if (path === '/') this.router.navigate(['welcome']);
+      if (path === '/profile') this.router.navigate(['login']);
     }
     return true;
   }

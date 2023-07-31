@@ -3,7 +3,7 @@
 header {
   display: flex;
   justify-content: space-between;
-  background-color: styles.$secondary-button;
+  background-color: styles.$secondary;
   margin: 0;
 }
 
@@ -15,7 +15,7 @@ header .left h2 {
 }
 
 header .left span {
-  background: linear-gradient(120deg, styles.$primary-button, styles.$accent);
+  background: linear-gradient(120deg, styles.$primary, styles.$accent);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }

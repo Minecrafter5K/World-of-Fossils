@@ -1,5 +1,11 @@
 <div class="view">
   <h1>Upload a new Fossil</h1>
+  <div *ngIf="loading">
+    <p>Loading...</p>
+  </div>
+  <div *ngIf="uploadError">
+    <p>Error: {{uploadErrorMessage}}</p>
+  </div>
   <form (ngSubmit)="onFormSubmit()" #f="ngForm">
     <p>Title:</p>
     <input type="text" name="title" placeholder="Title" ngModel />

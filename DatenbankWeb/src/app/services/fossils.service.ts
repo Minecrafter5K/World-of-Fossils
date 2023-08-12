@@ -61,9 +61,13 @@ export class FossilsService {
 
   // create new fossil
   async addFossil(newFossil: FormData): Promise<string> {
-    const { id } = await this.client.collection('fossils').create(newFossil);
-    debugger;
-    return id;
+    // TODO handle error properly
+    try {
+      const { id } = await this.client.collection('fossils').create(newFossil);
+      return id;
+    } catch (error) {
+      throw new Error("test");
+    }
   }
 
   getImgURLs(

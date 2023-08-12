@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FossilsService } from '../../services/fossils.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -13,25 +14,41 @@ export class CreateFossilComponent implements OnInit {
 
   imageFile!: File;
   modelFile!: File;
+  loading: boolean = false;
+  uploadError: boolean = false;
+  uploadErrorMessage: string = '';
 
-  constructor(private FossilService: FossilsService, private router: Router) {}
+  constructor(
+    private FossilService: FossilsService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
   async onFormSubmit(): Promise<void> {
+    const userId = this.authService.getUserId;
+
+    if (!userId) {console.log("you need to be logged in"); return};
+
     const values = this.myForm.value;
     const newFossil = new FormData();
 
     newFossil.append('title', values.title);
     newFossil.append('description', values.description);
     newFossil.append('age', values.age);
-    newFossil.append('owner', 'gc7irch4qhq8jz0');
+    newFossil.append('owner', userId);
     newFossil.append('image', this.imageFile);
     newFossil.append('model', this.modelFile);
 
-    const id = await this.FossilService.addFossil(newFossil);
+    this.FossilService.addFossil(newFossil).then((id) => {
+      this.router.navigate(['/', 'fossil', id]);
+    }).catch((error) => {
+      this.uploadError = true;
+      this.uploadErrorMessage = error.status;
+    });
 
-    this.router.navigate(['/', 'fossil', id]);
+    this.loading = true;
   }
 
   onImageSelected(event: any) {

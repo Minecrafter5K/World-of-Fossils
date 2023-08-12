@@ -40,6 +40,10 @@ export class AuthService {
     return this.client.authStore;
   }
 
+  get getUserId(): string | undefined {
+    return this.client.authStore.model?.id;
+  }
+
   public get isUserValid(): boolean {
     return this.client.authStore.isValid;
   }

@@ -49,6 +49,6 @@ export class AuthService {
   }
 
   getUser(id: string): Promise<BaseAuthStore> {
-    return this.client.collection('users').getOne(id);
+    return this.client.collection('users').getOne(id, { $autoCancel: false });
   }
 }

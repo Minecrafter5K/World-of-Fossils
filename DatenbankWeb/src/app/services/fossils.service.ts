@@ -1,9 +1,24 @@
 import { Injectable } from '@angular/core';
-import PocketBase, { Record } from 'pocketbase';
+import PocketBase, { ClientResponseError, Record } from 'pocketbase';
 import { environment } from 'src/environments/environment';
 import { Fossil } from '../models/fossil';
 import { AuthService } from './auth.service';
 import { PocketBaseService } from './pocket-base.service';
+
+type Error = {
+  message: string;
+  data: any;
+};
+
+type Response<T> =
+  | {
+      type: 'success';
+      data: T;
+    }
+  | {
+      type: 'error';
+      error: ClientResponseError;
+    };
 
 @Injectable({
   providedIn: 'root',
@@ -36,38 +51,42 @@ export class FossilsService {
     page?: number,
     itemPerPage?: number,
     sort?: string
-  ): Promise<Fossil[] | undefined> {
-    try {
-      const response = await this.client
-        .collection('fossils')
-        .getList(page, itemPerPage, { sort: sort });
+  ): Promise<Fossil[]> {
+    const response = await this.client
+      .collection('fossils')
+      .getList(page, itemPerPage, { sort: sort });
 
-      const fossils = response.items.map(async (fossil) => {
-        fossil['imageURL'] = this.getImgURLs(
-          fossil.id,
-          fossil['image'],
-          '?thumb=120x120'
-        );
-        fossil['owner'] = await this.authService.getUser(fossil['owner']);
-        return fossil;
-      });
+    const fossils = response.items.map(async (fossil) => {
+      fossil['imageURL'] = this.getImgURLs(
+        fossil.id,
+        fossil['image'],
+        '?thumb=120x120'
+      );
+      fossil['owner'] = await this.authService.getUser(fossil['owner']);
+      return fossil;
+    });
 
-      return (await Promise.all(fossils)) as unknown as Fossil[];
-    } catch (error) {
-      console.warn('error in getFossils: ', error);
-      return undefined;
-    }
+    return (await Promise.all(fossils)) as unknown as Fossil[];
   }
 
   // create new fossil
-  async addFossil(newFossil: FormData): Promise<string> {
-    // TODO handle error properly
-    try {
-      const { id } = await this.client.collection('fossils').create(newFossil);
-      return id;
-    } catch (error) {
-      throw new Error("test");
-    }
+  async addFossil(newFossil: FormData): Promise<Response<string>> {
+    const res = await this.client
+      .collection('fossils')
+      .create(newFossil)
+      .then((response) => {
+        return {
+          type: 'success',
+          data: response.id,
+        } satisfies Response<string>;
+      })
+      .catch((error: ClientResponseError) => {
+        return {
+          type: 'error',
+          error: error,
+        } satisfies Response<string>;
+      });
+    return res;
   }
 
   getImgURLs(

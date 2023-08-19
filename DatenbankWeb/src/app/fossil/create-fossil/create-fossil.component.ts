@@ -41,11 +41,24 @@ export class CreateFossilComponent implements OnInit {
     newFossil.append('image', this.imageFile);
     newFossil.append('model', this.modelFile);
 
-    this.FossilService.addFossil(newFossil).then((id) => {
-      this.router.navigate(['/', 'fossil', id]);
-    }).catch((error) => {
-      this.uploadError = true;
-      this.uploadErrorMessage = error.status;
+    this.FossilService.addFossil(newFossil).then((res) => {
+      if (res.type === 'error') {
+        this.uploadError = true;
+        this.uploadErrorMessage = res.error.message;
+        console.log(res.error.data);
+        this.loading = false;
+
+        const errors = res.error.data['data']
+
+        for (const [k, v] of Object.entries(errors)) {
+          const value = v as any;
+          this.uploadErrorMessage += `\n ${k}: ${value.message}`
+        }
+
+
+        return;
+      }
+      this.router.navigate(['/', 'fossil', res.data]);
     });
 
     this.loading = true;

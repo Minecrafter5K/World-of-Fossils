@@ -4,7 +4,7 @@
     <p>Loading...</p>
   </div>
   <div *ngIf="uploadError">
-    <p>Error: {{uploadErrorMessage}}</p>
+    <p style="white-space: pre-line">Error: {{ uploadErrorMessage }}</p>
   </div>
   <form (ngSubmit)="onFormSubmit()" #f="ngForm">
     <p>Title:</p>

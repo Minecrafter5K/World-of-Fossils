@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FossilsService } from 'src/app/services/fossils.service';
 
 import { Fossil } from 'src/app/models/fossil';
@@ -20,7 +20,8 @@ export class FossilDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fossilService: FossilsService,
-    private fossilLikeService: FossilLikeService
+    private fossilLikeService: FossilLikeService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +30,18 @@ export class FossilDetailsComponent implements OnInit {
 
   async getFossil(): Promise<void> {
     this.route.paramMap.subscribe(async (params) => {
-      const id: string = params.get('id')!;
-      this.fossil = await this.fossilService.getFossilDetails(id);
-      console.log(this.fossil);
+      if (params.has('id')) {
+        const id: string = params.get('id')!;
+        this.fossilService.getFossilDetails(id).then((resp) => {
+          if (resp.type === 'success') {
+            this.fossil = resp.data;
+          } else {
+            console.log(resp.error);
+            this.router.navigate(['/error'], { skipLocationChange: true, queryParams: { code: "500", message: "unexpected error" } });
+          }
+        });
+      }
+
       this.fossilLikeService
         .getFossilLikesAmount(this.fossil!.id)
         .then(([amount, isLiked]) => {

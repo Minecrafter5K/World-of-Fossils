@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateFossilComponent } from './fossil/create-fossil/create-fossil.component';
 import { FossilDetailsComponent } from './fossil/fossil-details/fossil-details.component';
 import { ExploreFossilsComponent } from './fossil/explore-fossils/explore-fossils.component';
-import { NotFoundComponent } from './util/not-found/not-found.component';
+import { ErrorComponent } from './util/error/error.component';
 import { LoginComponent } from './user/login/login.component';
 import { SinginComponent } from './user/singin/singin.component';
 import { WelcomeComponent } from './util/welcome/welcome.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate: [LoginActivateGuard],
   },
   { path: 'welcome', component: WelcomeComponent },
-  { path: '404', component: NotFoundComponent },
+  { path: 'error', component: ErrorComponent },
   { path: 'explore/:page/:sortby', component: ExploreFossilsComponent },
   { path: 'explore', redirectTo: 'explore/1/id', pathMatch: 'full' },
   { path: 'fossil/:id', component: FossilDetailsComponent },
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SinginComponent },
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

@@ -4,21 +4,9 @@ import { environment } from 'src/environments/environment';
 import { Fossil } from '../models/fossil';
 import { AuthService } from './auth.service';
 import { PocketBaseService } from './pocket-base.service';
-
-type Error = {
-  message: string;
-  data: any;
-};
-
-type Response<T> =
-  | {
-      type: 'success';
-      data: T;
-    }
-  | {
-      type: 'error';
-      error: ClientResponseError;
-    };
+import { ErrorableResponse } from '../models/errors';
+import { parse, string } from 'valibot';
+import { locationSchema } from '../models/location';
 
 @Injectable({
   providedIn: 'root',
@@ -34,15 +22,29 @@ export class FossilsService {
   }
 
   // get details from one fossil
-  async getFossilDetails(id: string): Promise<Fossil | undefined> {
+  async getFossilDetails(id: string): Promise<ErrorableResponse<Fossil, unknown>> {
     try {
       const fossil: Record = await this.client.collection('fossils').getOne(id);
       fossil['imageURL'] = this.getImgURLs(fossil.id, fossil['image']);
       fossil['owner'] = await this.authService.getUser(fossil['owner']);
-      return fossil as unknown as Fossil;
-    } catch (error) {
+
+      try {
+        fossil['location'] = parse(locationSchema, fossil['location'])
+      } catch (error) {
+        fossil['location'] = undefined;
+      }
+
+      return {
+        type: 'success',
+        data: fossil as unknown as Fossil,
+      };
+    }
+    catch (error) {
       console.log('error', error);
-      return undefined;
+      return {
+        type: 'error',
+        error: error,
+      };
     }
   }
 
@@ -70,7 +72,7 @@ export class FossilsService {
   }
 
   // create new fossil
-  async addFossil(newFossil: FormData): Promise<Response<string>> {
+  async addFossil(newFossil: FormData): Promise<ErrorableResponse<string, ClientResponseError>> {
     const res = await this.client
       .collection('fossils')
       .create(newFossil)
@@ -78,13 +80,13 @@ export class FossilsService {
         return {
           type: 'success',
           data: response.id,
-        } satisfies Response<string>;
+        } satisfies ErrorableResponse<string, ClientResponseError>;
       })
       .catch((error: ClientResponseError) => {
         return {
           type: 'error',
           error: error,
-        } satisfies Response<string>;
+        } satisfies ErrorableResponse<string, ClientResponseError>;
       });
     return res;
   }

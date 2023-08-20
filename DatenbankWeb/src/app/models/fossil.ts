@@ -5,7 +5,7 @@ export interface Fossil {
   title: string;
   description: string;
   age: number;
-  location: string;
+  location: Location | undefined;
   owner: User;
   image: string[];
   imageURL: string[];

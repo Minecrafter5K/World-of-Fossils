@@ -22,6 +22,14 @@
     <input type="file" name="image" (change)="onImageSelected($event)" />
     <p>3D Model:</p>
     <input type="file" name="model" (change)="onModelSelected($event)" />
+
+    <p>Location:</p>
+    <button (click)="getCurrentLocation()" type="button">Get current location</button>
+
+    <button (click)="getLocationFromImage()" type="button">Get location from image</button>
+
+    <p *ngIf="location">Lat: {{location.lat}} Lng: {{location.lng}}</p>
+
     <br />
     <input type="submit" />
   </form>
